@@ -1,4 +1,4 @@
-package com.tc.shardingjdbc;
+package com.tc.event;
 
 import org.springframework.stereotype.Service;
 

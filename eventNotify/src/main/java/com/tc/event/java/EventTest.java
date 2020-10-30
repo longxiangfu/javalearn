@@ -9,5 +9,7 @@ public class EventTest {
         eventManager.addListener(new EventListenerImpl());
         //触发事件
         eventManager.postEvent(new Event("", "89"));
+//        我是匿名类监听器。监听到的事件：Event{str='89'}
+//        我是默认监听器。监听到的事件：Event{str='89'}
     }
 }

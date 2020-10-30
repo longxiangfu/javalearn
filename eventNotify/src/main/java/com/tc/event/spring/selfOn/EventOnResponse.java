@@ -3,9 +3,9 @@ package com.tc.event.spring.selfOn;
 import org.springframework.context.ApplicationEvent;
 
 /**
- * 调用之前事件
+ * 正常返回之前事件
  */
-public class OnInvoke extends ApplicationEvent {
+public class EventOnResponse extends ApplicationEvent {
 
     private String message;
 
@@ -14,7 +14,7 @@ public class OnInvoke extends ApplicationEvent {
      *
      * @param source the object on which the event initially occurred (never {@code null})
      */
-    public OnInvoke(Object source, String message) {
+    public EventOnResponse(Object source, String message) {
         super(source);
         this.message = message;
     }

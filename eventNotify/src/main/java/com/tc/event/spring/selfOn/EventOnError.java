@@ -3,9 +3,9 @@ package com.tc.event.spring.selfOn;
 import org.springframework.context.ApplicationEvent;
 
 /**
- * 正常返回之前事件
+ * 错误发生时事件
  */
-public class OnResponse extends ApplicationEvent {
+public class EventOnError extends ApplicationEvent {
 
     private String message;
 
@@ -14,7 +14,7 @@ public class OnResponse extends ApplicationEvent {
      *
      * @param source the object on which the event initially occurred (never {@code null})
      */
-    public OnResponse(Object source, String message) {
+    public EventOnError(Object source, String message) {
         super(source);
         this.message = message;
     }

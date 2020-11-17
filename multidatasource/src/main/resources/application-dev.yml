@@ -1,0 +1,21 @@
+spring:
+    datasource:
+        first:
+            driver-class-name: com.mysql.jdbc.Driver
+            jdbc-url: jdbc:mysql://112.126.98.236:3306/xfdsx2018_test?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true
+            username: root
+            password: xinfadi_236_com
+        second:
+            driver-class-name: com.mysql.jdbc.Driver
+            jdbc-url: jdbc:mysql://192.168.1.240:3306/xfdsx_supplier?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true
+            username: root
+            password: xfdsx@2019/PW
+    jpa:
+        hibernate:
+            ddl-auto: update
+            naming:
+                # 驼峰命名  实测无效，需要在实体字段上添加注解@Column来指定表字段
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        show-sql: true
+        database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        database: mysql

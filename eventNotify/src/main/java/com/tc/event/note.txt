@@ -1,0 +1,7 @@
+事件处理模型通常有两种方式：
+1、当事件发生后，主动轮询通知事件对应的处理程序。
+例如java事件
+Spring事件：https://www.wiz.cn/wapp/folder/6d2b6379-f3d2-4798-98ce-a029f47bce7c?c=%2F%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0%2Fjava%E5%9F%BA%E7%A1%80%2F%E4%BA%8B%E4%BB%B6%E9%80%9A%E7%9F%A5%2F&docGuid=8bf9a930-1a76-11eb-99ed-43e6053f7497
+
+2、当事件发生后，将事件发送到事件队列中，然后消费程序轮询事件队列，若队列中有事件，通知事件对应的处理程序。
+   例如Netty:https://www.wiz.cn/wapp/folder/6d2b6379-f3d2-4798-98ce-a029f47bce7c?c=%2F%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0%2FIO%2F%E7%BD%91%E7%BB%9CIO%2FNetty%2F&docGuid=678f5df0-2d73-11eb-a9fa-e1ffcc34b983

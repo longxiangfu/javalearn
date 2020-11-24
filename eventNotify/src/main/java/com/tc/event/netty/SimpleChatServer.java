@@ -18,13 +18,20 @@ public class SimpleChatServer {
     }
 
     public void run() throws Exception {
+        //创建mainReactor。监听Accept连接建立事件和分发请求
         EventLoopGroup bossGroup = new NioEventLoopGroup();
+        //创建subReactor即workReactor。处理IO读写事件
         EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
+            //组装NioEventLoopGroup
             serverBootstrap.group(bossGroup, workerGroup)
+                    //设置Channel为Nio类型
                     .channel(NioServerSocketChannel.class)
+                    //配置入站、出站事件Handler
                     .childHandler(new SimpleChatServerInitializer())
+
+                    //设置连接配置参数
                     .option(ChannelOption.SO_BACKLOG, 128)
                     .childOption(ChannelOption.SO_KEEPALIVE, true);
 

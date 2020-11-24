@@ -11,7 +11,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class EventDemoListener implements ApplicationListener<EventDemo> {
 
-
     @Override
     public void onApplicationEvent(EventDemo event) {
         log.info("receiver:" + event.getMessage());
@@ -20,5 +19,6 @@ public class EventDemoListener implements ApplicationListener<EventDemo> {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
     }
 }

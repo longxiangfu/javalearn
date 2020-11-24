@@ -12,9 +12,14 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.nio.charset.Charset;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 异步连接Server
+ * ChannelFuture对应的监听实例ChannelFutureListener,当操作完成之后（本例是连接成功或连接失败后），
+ * 监听实例的operationComplete方法会被调用，该方法是抽象方法，我们可以自己实现成功或失败的逻辑；
+ * JDK也有Future，但是实际使用时，必须是持续阻塞获取或者阻塞一段时间，不灵活。而Netty中ChannelFutureListener基于
+ * 事件通知的方式
  */
 public class AsyncSimpleChatClient {
     private static String host = "localhost";
@@ -41,6 +46,7 @@ public class AsyncSimpleChatClient {
             ChannelFuture channelFuture = bootstrap.connect(host, port);
             //异步连接
             channelFuture.addListeners((ChannelFutureListener)future -> {
+                System.out.println("Thread:" + Thread.currentThread().getName());
                 if (future.isSuccess()) {
                     System.out.println("Connect successful!");
                     Channel channel = future.channel();
@@ -52,6 +58,12 @@ public class AsyncSimpleChatClient {
                     {
                         String str = scanner.next();
                         channel.writeAndFlush(str + "\r\n");
+//                        channel.eventLoop().execute(() ->{
+//
+//                        });
+//                        channel.eventLoop().schedule(() ->{
+//
+//                        }, 60, TimeUnit.SECONDS);
                         if(str.equalsIgnoreCase("exit")){
                             exit = true;
                             channel.close();
@@ -64,7 +76,7 @@ public class AsyncSimpleChatClient {
                     cause.printStackTrace();
                 }
             });
-            System.out.println("Finished connect operation2");
+            System.out.println("Finished connect operation2。" + Thread.currentThread().getName());
             channelFuture.channel().closeFuture().sync();
         } catch (Exception e) {
             e.printStackTrace();

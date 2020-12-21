@@ -19,6 +19,7 @@
         <module>shardinigJdbc</module>
         <module>eventNotify</module>
         <module>multidatasource</module>
+        <module>common</module>
     </modules>
 
     <properties>

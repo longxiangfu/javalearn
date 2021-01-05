@@ -52,4 +52,9 @@ public class OrderController {
         return service.updateStatusById(order.getStatus(), order.getId());
     }
 
+    @PostMapping("/testAndroid")
+    public void testAndroid(@RequestBody Order order){
+        System.out.println("服务端收到了：" + order.toString());
+    }
+
 }

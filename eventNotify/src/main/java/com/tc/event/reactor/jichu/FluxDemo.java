@@ -10,21 +10,9 @@ import java.util.concurrent.TimeUnit;
  * Flux
  */
 public class FluxDemo {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 //        parallelTest();
 //        delayElementsTest();
-        asyncNoBlockTest();
-    }
-
-    private static void asyncNoBlockTest() throws InterruptedException {
-        Flux.just(1, 2, 3, 4, 5)
-//                .delayElements(Duration.ofMillis(1000))
-                .map(e -> e+100)
-                .filter(e -> e % 2 == 0)
-                .log()
-                .subscribe(System.out::println);
-        System.out.println("主线程：" + Thread.currentThread().getName());
-        TimeUnit.SECONDS.sleep(5);
     }
 
     /**

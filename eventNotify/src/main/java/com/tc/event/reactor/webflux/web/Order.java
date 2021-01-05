@@ -40,4 +40,14 @@ public class Order implements Serializable {
     private Integer status;
 
     private static final long serialVersionUID = 1L;
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderSn='" + orderSn + '\'' +
+                ", memberId=" + memberId +
+                ", status=" + status +
+                '}';
+    }
 }

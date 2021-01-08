@@ -60,6 +60,8 @@ public class IOCTest {
     public void testAnnotationComponent(){
         ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         System.out.println(context.getBean("user"));
+        System.out.println(context.getBean("fox"));
+        System.out.println(context.getBean("userService"));
     }
 
 

@@ -19,7 +19,7 @@ public class MybatisSpringTest {
     @Test
     public void originTest(){
         //获取spring容器
-        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(MybatisSpringConfig.class);
         //获取bean  userMapper是jdk动态代理
         //有很多业务mapper时，就不适合用@Bean的方式创建MapperFactoryBean
         UserMapper userMapper = (UserMapper)context.getBean("userMapper");
@@ -32,7 +32,7 @@ public class MybatisSpringTest {
      */
     @Test
     public void mapperScanTest(){
-        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(MybatisSpringConfig.class);
         UserMapper userMapper = (UserMapper)context.getBean("userMapper");
         System.out.println(userMapper.query());
         AccountMapper accountMapper = (AccountMapper)context.getBean("accountMapper");
@@ -56,7 +56,7 @@ public class MybatisSpringTest {
 //        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
 //        ((SchoolMapper)context.getBean("myFactoryBean")).query();//select * from school
         //2.2 MyFactory通过BeanDefinitionRegistrar+@Import方式交给spring容器的
-        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(MybatisSpringConfig.class);
 //        SchoolMapper schoolMapper = (SchoolMapper)context.getBean("myFactoryBean");//根据注册时的beanName获取
         SchoolMapper schoolMapper = (SchoolMapper)context.getBean("schoolMapper");
         schoolMapper.query();

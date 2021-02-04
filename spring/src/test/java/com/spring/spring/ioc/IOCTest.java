@@ -14,6 +14,9 @@ import org.springframework.core.io.ResourceLoader;
 
 import java.util.Arrays;
 
+/**
+ * ioc 测试
+ */
 public class IOCTest {
 
     /**
@@ -22,7 +25,7 @@ public class IOCTest {
     @Test
     public void testAnnotationConfigrationAndBean(){
         //获取ioc容器
-        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(IocConfig.class);
 
         //获取bean
         //若将AppConfig中方法userService注释掉，会报错：
@@ -49,7 +52,7 @@ public class IOCTest {
      */
     @Test
     public void testAnnotationImport(){
-        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(IocConfig.class);
         System.out.println(context.getBean("user"));
     }
 
@@ -58,7 +61,7 @@ public class IOCTest {
      */
     @Test
     public void testAnnotationComponent(){
-        ApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
+        ApplicationContext context = new AnnotationConfigApplicationContext(IocConfig.class);
         System.out.println(context.getBean("user"));
         System.out.println(context.getBean("fox"));
         System.out.println(context.getBean("userService"));

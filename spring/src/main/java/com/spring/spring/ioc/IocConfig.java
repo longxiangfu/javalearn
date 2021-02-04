@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Import;
 @Configuration
 //@Import(MyImportBeanDefinitionRegistrar.class)
 @ComponentScan("com.spring.spring")
-public class AppConfig {
+public class IocConfig {
 
 //    @Bean
 //    public UserService userService(){

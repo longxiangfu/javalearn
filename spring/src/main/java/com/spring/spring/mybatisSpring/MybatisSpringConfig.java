@@ -18,7 +18,7 @@ import javax.sql.DataSource;
 //@MapperScan("com.spring.spring.mybatisSpring.dao")
 //@Import(MyImportBeanDefinitionRegistrar.class)
 @MyMapperScan
-public class AppConfig {
+public class MybatisSpringConfig {
 
     @Bean
     public DataSource dataSource(){

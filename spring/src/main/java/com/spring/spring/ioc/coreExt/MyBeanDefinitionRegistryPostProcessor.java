@@ -27,6 +27,12 @@ public class MyBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegi
         //设置userService的构造器的模式，默认实例化是调用无参构造器，这里设置3，表示调用有餐构造器
         ((RootBeanDefinition) definition).setAutowireMode(3);
         registry.registerBeanDefinition("userService", definition);
+
+//        beanDefinition.setBeanClassName(""); // beanClass
+//        beanDefinition.setScope(""); // 单例 原型 request session application
+//        beanDefinition.setLazyInit(true); // 延迟加载
+//        beanDefinition.setInitMethodName(""); // 初始化方法
+//        ((RootBeanDefinition) beanDefinition).setAutowireMode(3); // autowireMode构造推断
     }
 
     @Override

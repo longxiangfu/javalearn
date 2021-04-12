@@ -35,7 +35,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <scope>aa.test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -63,7 +63,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
-            <scope>test</scope>
+            <scope>aa.test</scope>
         </dependency>
     </dependencies>
 

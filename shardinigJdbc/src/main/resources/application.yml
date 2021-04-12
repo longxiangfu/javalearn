@@ -12,7 +12,7 @@ server:
 
 # spring总体配置
 spring:
-    # 环境 dev|test|prod/
+    # 环境 dev|aa.test|prod/
     profiles:
         active: dev
     servlet:

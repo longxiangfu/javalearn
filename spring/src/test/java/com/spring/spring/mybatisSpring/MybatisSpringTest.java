@@ -1,5 +1,6 @@
 package com.spring.spring.mybatisSpring;
 
+import com.spring.spring.mybatisSpring.core.MyFactoryBean;
 import com.spring.spring.mybatisSpring.core.MyInvocationHandler;
 import com.spring.spring.mybatisSpring.dao.AccountMapper;
 import com.spring.spring.mybatisSpring.dao.SchoolMapper;
@@ -58,7 +59,9 @@ public class MybatisSpringTest {
         //2.2 MyFactory通过BeanDefinitionRegistrar+@Import方式交给spring容器的
         ApplicationContext context = new AnnotationConfigApplicationContext(MybatisSpringConfig.class);
 //        SchoolMapper schoolMapper = (SchoolMapper)context.getBean("myFactoryBean");//根据注册时的beanName获取
-        SchoolMapper schoolMapper = (SchoolMapper)context.getBean("schoolMapper");
+        SchoolMapper schoolMapper = (SchoolMapper)context.getBean("schoolMapper"); //前面不加&,获取的是getObject方法的返回值
+        MyFactoryBean myFactoryBean = (MyFactoryBean)context.getBean("&schoolMapper"); //前面加上&,获取的是FactoryBean本身
+        System.out.println(myFactoryBean);
         schoolMapper.query();
         //2.3 在mybatis-spring中，@MapperScan原理类似我们这里
         //在springboot中，@Mapper使用的后置处理器

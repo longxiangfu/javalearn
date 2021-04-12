@@ -14,7 +14,7 @@ public class EventAction {
     EventDemoManager eventDemoManager;
 
 
-    @GetMapping("/test")
+    @GetMapping("/aa.test")
     public void test(){
         EventDemo  eventDemo = new EventDemo(this, "100");
         eventDemoManager.publish(eventDemo);

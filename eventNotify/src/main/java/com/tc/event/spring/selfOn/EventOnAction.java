@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class EventOnAction {
 
 
-    @GetMapping("/test")
+    @GetMapping("/aa.test")
     public void test(){
         log.info("我要测试某方法的onInvoke,onResponse,onError");
     }

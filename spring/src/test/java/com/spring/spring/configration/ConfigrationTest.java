@@ -9,7 +9,7 @@ public class ConfigrationTest {
      * @Configuration  被该注解标识的类，表明该类是method bean集合的配置文件
      * 有无该注解，method bean都可以交给spring容器
      */
-    @Test
+    @org.junit.Test
     public void test(){
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ConfigrationConfig.class);
         System.out.println(context.getBean("user"));

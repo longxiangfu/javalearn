@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
 @RestController
-@RequestMapping("/order/test")
+@RequestMapping("/order/aa.test")
 public class OrderController {
 
     @Resource

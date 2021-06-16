@@ -1,16 +1,14 @@
 package com.spring.spring.beanLifeCycle.service;
 
-import com.spring.spring.beanLifeCycle.bean.User;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component(value = "beanLifeCycleUserService")
 public class UserService implements InitializingBean, BeanNameAware {
 
-    @Autowired
-    private User user;
+//    @Autowired
+//    private User user;
 
     private String name;
 
@@ -18,13 +16,14 @@ public class UserService implements InitializingBean, BeanNameAware {
 
     private String userName;
 
+
     /**
      * 初始化 即可以在这里设置普通属性
      * @throws Exception
      */
     @Override
     public void afterPropertiesSet() throws Exception {
-        this.name = "longxiangfu";
+        this.name = "longxiangfu_userService";
     }
 
     /**
@@ -36,7 +35,6 @@ public class UserService implements InitializingBean, BeanNameAware {
     public void setBeanName(String name) {
         this.beanName = name;
     }
-
 
     public String getUserName() {
         return userName;

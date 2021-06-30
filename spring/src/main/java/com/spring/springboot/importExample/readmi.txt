@@ -1,0 +1,15 @@
+该模块研究springboot的自动装配原理
+
+一、springboot bean的装配方式
+@Component + @ComponentScan
+@Configuration + @Bean
+@Import
+
+二、@Import的用法
+1.@Import(value = ImportA.class)
+2.@Import(value = ImportBImportBeanDefinitionRegistrar.class)  用于第三方框架整合  mybatis\springcloud feign
+3.@Import(value = ImportCImportSelector.class)  springboot自动装配原理
+
+三、springboot自动配置原理
+见位为知笔记：
+https://www.wiz.cn/wapp/folder/6d2b6379-f3d2-4798-98ce-a029f47bce7c?c=%2F%E5%B7%A5%E4%BD%9C%E7%AC%94%E8%AE%B0%2Fspringboot%2F%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90%2Fspringboot%E8%87%AA%E5%8A%A8%E9%85%8D%E7%BD%AE%E5%8E%9F%E7%90%86%2F&docGuid=75fb21a0-ce75-11eb-a5c1-c156e3495abc

@@ -1,6 +1,5 @@
-package com.spring.java.md5;
+package com.spring.java.des;
 
-import org.apache.commons.io.FileUtils;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -8,16 +7,15 @@ import javax.crypto.Cipher;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 import javax.crypto.spec.IvParameterSpec;
-import java.io.File;
-import java.io.IOException;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.nio.charset.Charset;
 import java.security.Key;
 import java.security.spec.AlgorithmParameterSpec;
-import java.util.List;
 
-
+/**
+ * 加密算法--DES
+ */
 public class CryptoTools {
     private final byte[] DESkey = new byte[]{
         (byte)145,
@@ -70,37 +68,6 @@ public class CryptoTools {
     }
 
 
-    public void parseByte()
-            throws NumberFormatException {
-
-//        File file = new File("C:\\Users\\Administrator\\Desktop\\demo1.txt");
-        File file = new File("C:\\Users\\Administrator\\Desktop\\demo2.txt");
-//        File file = new File("C:\\Users\\Administrator\\Desktop\\demo3.txt");
-        // 读取
-        try {
-            List<String> fileStrList = FileUtils.readLines(file, Charset.defaultCharset());
-            for (String str : fileStrList) {
-//                System.out.println("原:" + str);
-                byte result = 0;
-                if(str.length() < 8){
-                    result = Byte.parseByte(str,2);
-                }else if(str.length() == 8 && str.startsWith("1")){
-                    byte temp = Byte.parseByte(str.substring(1, str.length()-1),2);
-                    result = (byte) (0 - temp);
-                } else if (str.length() == 8 && str.startsWith("0")){
-                    result = Byte.parseByte(str,2);
-                }
-
-                System.out.println(result);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
-    }
-
-
     /**
      * 获取mac地址
      * @param IP
@@ -127,7 +94,6 @@ public class CryptoTools {
         try {
             String test = "8C:16:45:B1:7D:90";
             CryptoTools des = new CryptoTools();//自定义密钥
-//            des.parseByte();
             System.out.println("加密前："+test);
             System.out.println("加密后："+des.encode(test));
             System.out.println("解密后："+des.decode(des.encode(test)));

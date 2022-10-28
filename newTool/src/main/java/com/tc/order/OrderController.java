@@ -2,6 +2,7 @@ package com.tc.order;
 
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -37,7 +38,7 @@ public class OrderController {
      * @return 是否添加成功
      */
     @PostMapping("add")
-    public OrderInfoBo add(@RequestBody OrderInfoVo orderInfo){
+    public OrderInfoBo add(@RequestBody @Valid OrderInfoVo orderInfo){
         OrderInfoBo bo = new OrderInfoBo();
         bo.setOrderNo("2020111111");
         bo.setStatus(1);

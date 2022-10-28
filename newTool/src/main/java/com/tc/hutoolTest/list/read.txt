@@ -1,0 +1,29 @@
+./com.example.demo.demoapplication
+启动时间 0.215 seconds
+2020-12-18 12:30:40.625  INFO 94578 --- [           main] com.example.demo.DemoApplication         : Started DemoApplication in 0.215 seconds (JVM running for 0.267)
+看一下内存占用 24.8203MB
+ps aux | grep com.example.demo.demoapplication | grep -v grep | awk '{print $11 "\t" $6/1024"MB" }'
+
+./com.example.demo.demoapplication 24.8203MB
+
+
+
+
+$ java -jar demo-0.0.1-SNAPSHOT.jar
+
+engine: [Apache Tomcat/9.0.41]
+2020-12-18 11:48:36.856  INFO 91457 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2020-12-18 11:48:36.856  INFO 91457 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1135 ms
+内存占用情况
+$ ps aux | grep demo-0.0.1-SNAPSHOT.jar | grep -v grep | awk '{print $11 "\t" $6/1024"MB" }'
+/usr/bin/java 480.965MB
+
+
+命令:
+
+$ ps aux | grep graalvm-demo | awk '{print $1 "t" $2 "t" $3 "t" $4 "t" $5 "t" $6/1024"MB" "t" $11$12$13$14$15$16$17$18 }'
+
+结果:
+51460	0.0	2.9	10508892	473.863MB	/usr/bin/java-jargraalvm-demo-0.0.1-SNAPSHOT.jar
+
+

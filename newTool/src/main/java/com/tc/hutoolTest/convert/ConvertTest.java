@@ -1,6 +1,7 @@
 package com.tc.hutoolTest.convert;
 
 import cn.hutool.core.convert.Convert;
+import cn.hutool.core.convert.ConverterRegistry;
 
 import java.util.Date;
 import java.util.List;
@@ -32,6 +33,22 @@ public class ConvertTest {
          */
 //        long a = 4535345;
 //        long minutes = Convert.convertTime(a, TimeUnit.MILLISECONDS, TimeUnit.MINUTES);
+
+
+        /**
+         * 以上只能实现特定类型的转换，不具备通用性
+         * 利用Converter(转换器)   ConverterRegistry（转换器注册器）--里面有一些默认的转换器，也可以自定义转换器
+         */
+        // 默认转换器
+//        ConverterRegistry converterRegistry = ConverterRegistry.getInstance();
+//        String result = converterRegistry.convert(String.class, 1111);
+//        System.out.println(result); // 1111
+
+        // 自定义转换器
+        ConverterRegistry converterRegistry = ConverterRegistry.getInstance();
+        converterRegistry.putCustom(String.class, CustomConverter.class); // 覆盖默认的转换器
+        String result = converterRegistry.convert(String.class, 4444);
+        System.out.println(result); // custom:4444
 
     }
 }

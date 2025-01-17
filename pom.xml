@@ -20,6 +20,7 @@
         <module>eventNotify</module>
         <module>multidatasource</module>
         <module>common</module>
+        <module>redis</module>
     </modules>
 
     <properties>
@@ -87,7 +88,13 @@
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>1.1.9</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+            </dependency>
         </dependencies>
+
 
     </dependencyManagement>
 

@@ -1,0 +1,5 @@
+# 类或对象所在的包
+[com.tc.hutoolTest.cron]
+# 每1分钟执行一次
+# 类名.方法名
+TestJob.run = */1 * * * *

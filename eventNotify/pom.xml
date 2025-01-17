@@ -39,11 +39,11 @@
         </dependency>
 
         <!--与webFlux依赖有冲突，先注释掉-->
-        <!--<dependency>-->
-            <!--<groupId>io.netty</groupId>-->
-            <!--<artifactId>netty-all</artifactId>-->
-            <!--<version>5.0.0.Alpha2</version>-->
-        <!--</dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>io.netty</groupId>-->
+<!--            <artifactId>netty-all</artifactId>-->
+<!--            <version>5.0.0.Alpha2</version>-->
+<!--        </dependency>-->
 
         <!--集成webflux 底层有reactor core-->
         <dependency>

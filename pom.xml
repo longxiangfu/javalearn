@@ -20,7 +20,7 @@
         <module>eventNotify</module>
         <module>multidatasource</module>
         <module>common</module>
-        <module>redis</module>
+        <module>newTool</module>
     </modules>
 
     <properties>
@@ -36,7 +36,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
-            <scope>aa.test</scope>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -64,13 +64,19 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
-            <scope>aa.test</scope>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.8.0</version>
+        </dependency>
+
+        <!-- Atomikos 跨数据事务 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jta-atomikos</artifactId>
         </dependency>
     </dependencies>
 
@@ -88,13 +94,7 @@
                 <artifactId>druid-spring-boot-starter</artifactId>
                 <version>1.1.9</version>
             </dependency>
-
-            <dependency>
-                <groupId>com.google.code.gson</groupId>
-                <artifactId>gson</artifactId>
-            </dependency>
         </dependencies>
-
 
     </dependencyManagement>
 

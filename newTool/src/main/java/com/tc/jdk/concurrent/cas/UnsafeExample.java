@@ -9,7 +9,7 @@ import java.lang.reflect.Type;
  * cas底层基础
  * cas底层都是通过Unsafe.compareAndSwapInt相关方法进行cas操作的
  */
-public class Test1 {
+public class UnsafeExample {
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
         Person p = new Person();
 

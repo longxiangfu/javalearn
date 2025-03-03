@@ -12,6 +12,26 @@ import java.util.concurrent.*;
  * 异步回调和声明式
  * 不以Async结尾的方法也可能是非阻塞的，只是由JVM根据结果是否已经就绪来确定是继续在之前的线程执行还是分配到新的线程（见AsyncAndSyncTest和AsyncAndSyncTest1）
  * 任务编排
+ * runAsync(Runnable): 提交执行无返回值的任务，默认执行线程是ForkJoinPool#commonPool()
+ * runAsync(Runnable, Executor):提交执行无返回值的任务，指定Executor执行
+ * supplyAsync(Runnable):提交有返回值的任务，默认的线程是ForkJoinPool#commonPool()
+ * supplyAsync(Runnable, Executor)：提交有返回值的任务，指定Executor执行
+ * allOf：给定的所有的CompletableFuture都完成后，才完成
+ * anyOf:给定的任何一个CompletableFuture完成，就完成
+ *
+ * thenRunAsync：不处理上阶段返回值，该阶段无返回值。
+ * thenAccept:处理上阶段返回值，该阶段无返回值。
+ * thenApplyAsync：处理上阶段返回值，该阶段有返回值。
+ * thenCombine:合并两个任务的结果，有返回值。
+ * thenAcceptBothAsync:合并两个任务的结果，无返回值。
+ * runAfterBoth: 两个任务都执行完后，调用指定的操作
+ * runAfterEither:两个任务任何一个正常完成后，调用指定的操作
+ * whenComplete:当上阶段完成后，将上阶段的结果以及上阶段的异常作为参数执行后续的操作
+ * whenCompose:当上阶段正常完成后，将上阶段的结果作为提供函数的参数来执行函数
+ * handle:当上阶段完成后，将上阶段的结果以及阶段的异常作为参数执行后续的操作
+ *
+ * completedFuture:创建一个已经完成的CompletableFuture
+ *
  */
 public class CompletableFutureTest {
     public static void main(String[] args) throws ExecutionException, InterruptedException, IOException {
@@ -51,12 +71,21 @@ public class CompletableFutureTest {
         supplyAsync(Runnable):提交有返回值的任务，默认的线程是ForkJoinPool#commonPool()
         supplyAsync(Runnable, Executor)：提交有返回值的任务，指定Executor执行
          */
-//        CompletableFuture.supplyAsync(() ->{
+//        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() ->{
 //            System.out.println("supplyAsync " + Thread.currentThread().getName());
+//            try {
+//                Thread.sleep(2000);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
 //            return 1;
 //        });
+//        future.whenComplete((v,t) ->{
+//            System.out.println("supplyAsync1 " + Thread.currentThread().getName() + "。" + v);
+//        }).get();
 //        System.in.read();
-//        supplyAsync ForkJoinPool.commonPool-worker-1
+////        supplyAsync ForkJoinPool.commonPool-worker-25
+////        supplyAsync1 ForkJoinPool.commonPool-worker-25。1
 
 
         /*
@@ -84,10 +113,10 @@ public class CompletableFutureTest {
 //        System.out.println("阻塞 " + Thread.currentThread().getName());
 //        future.join();
 //        System.out.println("阻塞结束 " + Thread.currentThread().getName());
-//        阻塞 main
-//        allOf1
-//        allOf2
-//        阻塞结束 main
+////        阻塞 main
+////        allOf1
+////        allOf2
+////        阻塞结束 main
 
 //        CompletableFuture<Object> future1 = CompletableFuture.anyOf(
 //                CompletableFuture.runAsync(() -> {
@@ -109,18 +138,17 @@ public class CompletableFutureTest {
 //                })
 //        );
 //        System.out.println("阻塞 " + Thread.currentThread().getName());
-//        Object join = future1.join();
-//        System.out.println(join.toString());
+//        future1.join();
 //        System.out.println("阻塞结束 " + Thread.currentThread().getName());
-//        阻塞 main
-//        anyOf1
-//        阻塞结束 main
+////        阻塞 main
+////        anyOf1
+////        阻塞结束 main
 
 
-        CompletableFuture<Integer> completedFuture = CompletableFuture.completedFuture(1000);
-        CompletableFuture<Integer> completedFuture1 = CompletableFuture.completedFuture(null);
-        System.out.println(completedFuture.get()); // 1000
-        System.out.println(completedFuture1.get()); // null
+//        CompletableFuture<Integer> completedFuture = CompletableFuture.completedFuture(1000);
+//        CompletableFuture<Integer> completedFuture1 = CompletableFuture.completedFuture(null);
+//        System.out.println(completedFuture.get()); // 1000
+//        System.out.println(completedFuture1.get()); // null
 
     }
 
@@ -141,13 +169,13 @@ public class CompletableFutureTest {
         /*
         thenAccept:处理上阶段返回值，该阶段无返回值。
          */
-//        CompletableFuture.supplyAsync(() ->{
-//            System.out.println("步骤1。线程：" + Thread.currentThread().getName()); // 步骤1。线程：ForkJoinPool.commonPool-worker-1
-//            return 1;
-//        }).thenAcceptAsync(beforeResult->{
-//            System.out.println("步骤2。上阶段结果为：" + beforeResult); // 步骤2。上阶段结果为：1
-//            System.out.println("线程："  + Thread.currentThread().getName()); // 线程：ForkJoinPool.commonPool-worker-1
-//        });
+        CompletableFuture.supplyAsync(() ->{
+            System.out.println("步骤1。线程：" + Thread.currentThread().getName()); // 步骤1。线程：ForkJoinPool.commonPool-worker-1
+            return 1;
+        }).thenAcceptAsync(beforeResult->{
+            System.out.println("步骤2。上阶段结果为：" + beforeResult); // 步骤2。上阶段结果为：1
+            System.out.println("线程："  + Thread.currentThread().getName()); // 线程：ForkJoinPool.commonPool-worker-1
+        });
 
 
         /*
@@ -161,35 +189,36 @@ public class CompletableFutureTest {
 //            System.out.println("线程：" + Thread.currentThread().getName()); // 线程：ForkJoinPool.commonPool-worker-1
 //            return 2;
 //        });
+//        // completableFuture.get()是阻塞操作
 //        System.out.println(completableFuture.get()); // 2
 
 
         /*
         thenCombine:合并两个任务的结果，有返回值。
          */
-        CompletableFuture<Integer> completableFuture =
-                CompletableFuture.supplyAsync(() -> {
-                    System.out.println("线程：" + Thread.currentThread().getName()); // 线程：ForkJoinPool.commonPool-worker-1
-                    return 6;
-                }).thenCombineAsync(
-                        CompletableFuture.supplyAsync(() -> {
-                            System.out.println("线程：" + Thread.currentThread().getName()); // 线程：ForkJoinPool.commonPool-worker-1
-                            return 10;
-                        }),
-                        (one, two) -> {
-                            System.out.println("线程：" + Thread.currentThread().getName()); // 线程：ForkJoinPool.commonPool-worker-2
-                            return one + two;
-                }).thenCombineAsync(
-                        CompletableFuture.supplyAsync(() -> {
-                            System.out.println("线程：" + Thread.currentThread().getName()); // 线程：ForkJoinPool.commonPool-worker-2
-                            return 10;
-                        }),
-                        (one, two) -> {
-                            System.out.println("线程：" + Thread.currentThread().getName()); // 线程：ForkJoinPool.commonPool-worker-2
-                            return one + two;
-                        }
-                );
-        System.out.println(completableFuture.get()); // 26
+//        CompletableFuture<Integer> completableFuture =
+//                CompletableFuture.supplyAsync(() -> {
+//                    System.out.println("线程：" + Thread.currentThread().getName()); // 线程：ForkJoinPool.commonPool-worker-1
+//                    return 6;
+//                }).thenCombineAsync(
+//                        CompletableFuture.supplyAsync(() -> {
+//                            System.out.println("线程：" + Thread.currentThread().getName()); // 线程：ForkJoinPool.commonPool-worker-1
+//                            return 10;
+//                        }),
+//                        (one, two) -> {
+//                            System.out.println("线程：" + Thread.currentThread().getName()); // 线程：ForkJoinPool.commonPool-worker-2
+//                            return one + two;
+//                }).thenCombineAsync(
+//                        CompletableFuture.supplyAsync(() -> {
+//                            System.out.println("线程：" + Thread.currentThread().getName()); // 线程：ForkJoinPool.commonPool-worker-2
+//                            return 10;
+//                        }),
+//                        (one, two) -> {
+//                            System.out.println("线程：" + Thread.currentThread().getName()); // 线程：ForkJoinPool.commonPool-worker-2
+//                            return one + two;
+//                        }
+//                );
+//        System.out.println(completableFuture.get()); // 26
 
 
         /*
@@ -259,25 +288,25 @@ public class CompletableFutureTest {
 
 
         /*
-        whenCompose:当上阶段正常完成后，将上阶段的结果作为提供函数的参数执行函数
+        whenCompose:当上阶段正常完成后，将上阶段的结果作为提供函数的参数来执行函数
          */
 //        CompletableFuture<Integer> future = CompletableFuture.supplyAsync(() -> {
 //            System.out.println("线程：" + Thread.currentThread().getName()); // 线程：ForkJoinPool.commonPool-worker-1
 //            return 1;
 //        }).thenComposeAsync((beforeResult) -> {
 //            System.out.println("线程：" + Thread.currentThread().getName()); // 线程：ForkJoinPool.commonPool-worker-1
-//            return CompletableFuture.completedFuture(beforeResult);
+//            return CompletableFuture.completedFuture(beforeResult+10);
 //        });
-//        System.out.println(future.get()); // 1
+//        System.out.println(future.get()); // 11
 
 
         /*
         handle:当上阶段完成后，将上阶段的结果以及阶段的异常作为参数执行后续的操作
          */
-//        CompletableFuture<Integer> completableFuture = CompletableFuture
-//                .supplyAsync(() -> 1)
-//                .handleAsync((r, throwable) -> r + 3);
-//        System.out.println(completableFuture.join()); // 4
+        CompletableFuture<Integer> completableFuture = CompletableFuture
+                .supplyAsync(() -> 1)
+                .handleAsync((r, throwable) -> r + 3);
+        System.out.println(completableFuture.get()); // 4
 
     }
 }

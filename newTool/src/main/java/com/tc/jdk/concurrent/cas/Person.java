@@ -12,4 +12,11 @@ public class Person implements Cloneable, Serializable {
     public Integer age;
     public int no;
 
+    public Person() {
+    }
+
+    public Person(String name) {
+        this.name = name;
+    }
+
 }

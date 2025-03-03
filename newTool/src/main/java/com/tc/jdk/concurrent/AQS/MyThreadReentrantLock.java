@@ -13,8 +13,8 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class MyThreadReentrantLock implements Runnable{
 	
-	private ReentrantLock lock = new ReentrantLock();
-//	private ReentrantLock lock1 = new ReentrantLock(true);//公平锁
+	private static final ReentrantLock lock = new ReentrantLock(); // 非公平锁
+//	private static final ReentrantLock lock1 = new ReentrantLock(true);//公平锁
 	@Override
 	public void run() {
 //		lock.lock(); // 获取不到锁就阻塞

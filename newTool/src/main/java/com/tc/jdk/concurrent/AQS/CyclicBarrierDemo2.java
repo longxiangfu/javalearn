@@ -13,7 +13,7 @@ public class CyclicBarrierDemo2 {
 		System.out.println("所有线程到达CyclicBarrier后执行任务");
 	});
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		Thread t1 = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -42,9 +42,16 @@ public class CyclicBarrierDemo2 {
 		t1.start();
 		t2.start();
 
-//		Thread-0到达
+		System.out.println("mian等待");
+		t1.join();
+		t2.join();
+		System.out.println("mian执行完成");
+
+//		mian等待
 //		Thread-1到达
+//		Thread-2到达
 //		所有线程到达CyclicBarrier后执行任务
+//		mian执行完成
 
 	}
 

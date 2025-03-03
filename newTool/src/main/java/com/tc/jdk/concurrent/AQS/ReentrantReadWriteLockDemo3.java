@@ -5,13 +5,19 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
  * 读写锁
- * 读锁：允许并发读
- * 写锁：不允许并发写
- * 读写锁：读读不互斥，也就说读读可以并发。读写、写读、写写是互斥的。
+ * 读读不互斥
+ * 读写、写读、写写互斥
  */
 public class ReentrantReadWriteLockDemo3 {
     private static final MyReadWriteLock myReadWriteLock = new MyReadWriteLock();
     public static void main(String[] args) throws InterruptedException {
+//        readReadTest();
+//        writeWriteTest();
+//        readWriteTest();
+        writeReadTest();
+    }
+
+    public static void readReadTest() throws InterruptedException {
         Thread r1 = new Thread(() ->{
             myReadWriteLock.read();
         }, "r1");
@@ -23,23 +29,69 @@ public class ReentrantReadWriteLockDemo3 {
         r1.join(); // 主线程等待r1线程结束
         r2.join();
 
-        new Thread(() ->{
-            myReadWriteLock.write();
-        }, "w1").start();
-        new Thread(() ->{
-            myReadWriteLock.write();
-        }, "w2").start();
-
-        // 允许并发读
 //        读取进入|线程r1
 //        读取进入|线程r2
-//        读取退出|线程r2
 //        读取退出|线程r1
-        // 不允许并发写
-//        写入进入|线程w1
-//        写入退出|线程w1
-//        写入进入|线程w2
-//        写入退出|线程w2
+//        读取退出|线程r2
+    }
+    public static void writeWriteTest() throws InterruptedException {
+        Thread r1 = new Thread(() ->{
+            myReadWriteLock.write();
+        }, "r1");
+        Thread r2 = new Thread(() ->{
+            myReadWriteLock.write();
+        }, "r2");
+        r1.start();
+        r2.start();
+        r1.join(); // 主线程等待r1线程结束
+        r2.join();
+
+//        写入进入|线程r1
+//        写入退出|线程r1
+//        写入进入|线程r2
+//        写入退出|线程r2
+    }
+    public static void readWriteTest() throws InterruptedException {
+        Thread r1 = new Thread(() ->{
+            myReadWriteLock.read();
+        }, "r1");
+        r1.start();
+
+        Thread.sleep(2000);
+
+        Thread r2 = new Thread(() ->{
+            myReadWriteLock.write();
+        }, "r2");
+        r2.start();
+
+        r1.join(); // 主线程等待r1线程结束
+        r2.join();
+
+//        读取进入|线程r1
+//        读取退出|线程r1
+//        写入进入|线程r2
+//        写入退出|线程r2
+    }
+    public static void writeReadTest() throws InterruptedException {
+        Thread r1 = new Thread(() ->{
+            myReadWriteLock.write();
+        }, "r1");
+        r1.start();
+
+        Thread.sleep(1000);
+
+        Thread r2 = new Thread(() ->{
+            myReadWriteLock.read();
+        }, "r2");
+        r2.start();
+
+        r1.join(); // 主线程等待r1线程结束
+        r2.join();
+
+//        写入进入|线程r1
+//        写入退出|线程r1
+//        读取进入|线程r2
+//        读取退出|线程r2
     }
 
 

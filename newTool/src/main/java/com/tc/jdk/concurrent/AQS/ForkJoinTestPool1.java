@@ -19,6 +19,7 @@ public class ForkJoinTestPool1 {
      * 计算和
      */
     private static class Sum extends RecursiveTask{
+        // 每100个数分到一个线程来计算
         private static final Long THRESHOLD = 100L;
         private Long start;
         private Long end;

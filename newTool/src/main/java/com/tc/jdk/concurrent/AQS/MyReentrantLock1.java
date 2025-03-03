@@ -4,7 +4,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * Condition 条件队列
+ * ReentrantLock示例
  */
 public class MyReentrantLock1 {
     private static final ReentrantLock lock = new ReentrantLock(true); // 锁
@@ -16,16 +16,20 @@ public class MyReentrantLock1 {
     private static boolean hastakeout = false; // 有饭
 
     public void cigratee() {
+        // 获取到锁
         lock.lock();
         try {
-            while (!hascig) {
+            while (!hascig) { // 判断共享变量
                 System.out.println("没有烟，歇一会");
                 try {
+                    // 调用条件队列的await方法，释放锁，进入条件队列
                     cigCon.await();
+                    // 其他线程调用了cigCon.signal(), 将当前线程从条件队列中移到同步队列队尾，当前线程重新尝试获取锁
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
+            // 当前线程重新获取到锁
             System.out.println("有烟了，干活");
         }finally {
             lock.unlock();
@@ -33,16 +37,20 @@ public class MyReentrantLock1 {
     }
 
     public void takeout() {
+        // 获取到锁
         lock.lock();
         try {
-            while (!hastakeout) {
+            while (!hastakeout) { // 判断共享变量
                 System.out.println("没有饭，歇一会");
                 try {
+                    // 调用条件队列的await方法，释放锁，进入条件队列
                     takeCon.await();
+                    // 其他线程调用了cigCon.signal(), 将当前线程从条件队列中移到同步队列队尾，当前线程重新尝试获取锁
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
+            // 当前线程重新获取到锁
             System.out.println("有饭了，干活");
         }finally {
             lock.unlock();
@@ -62,6 +70,7 @@ public class MyReentrantLock1 {
             try {
                 hascig = true;
                 System.out.println("唤醒烟的等待线程");
+                // 调用条件队列的signal方法，选择一个线程移到同步队列队尾，该线程重新尝试获取锁
                 cigCon.signal();
             }finally {
                 lock.unlock();
@@ -72,6 +81,7 @@ public class MyReentrantLock1 {
             try {
                 hastakeout = true;
                 System.out.println("唤醒饭的等待线程");
+                // 调用条件队列的signal方法，选择一个线程移到同步队列队尾，该线程重新尝试获取锁
                 takeCon.signal();
             }finally {
                 lock.unlock();

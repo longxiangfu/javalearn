@@ -10,7 +10,6 @@ import java.util.concurrent.*;
 public class SemaphoreDemo1 {
 	private static final ExecutorService service = Executors.newCachedThreadPool();
 	private static final Semaphore sp = new Semaphore(3);//总共有3个许可
-	private static final CountDownLatch latch = new CountDownLatch(3);
 
 	public static void main(String[] args) throws InterruptedException {
 		for(int i = 0;i < 10;i++) {
@@ -24,7 +23,7 @@ public class SemaphoreDemo1 {
 				public void run() {
 					try {
 						sp.acquire();//获取许可,如果没有许可就等待
-//						sp.tryAcquire(10, TimeUnit.SECONDS); // 试图获取信号量
+//						sp.tryAcquire(10, TimeUnit.SECONDS); // 试图获取信号量，有超时时间
 
 						System.out.println("线程"+Thread.currentThread().getName()+
 								"进入，当前已有"+(3-sp.availablePermits())+"并发");
@@ -45,10 +44,9 @@ public class SemaphoreDemo1 {
 				
 			};
 			service.execute(runnabele);
-			latch.countDown();
 		}
 
-		latch.await();
+		Thread.sleep(10000);
 		service.shutdown();
 	}
 

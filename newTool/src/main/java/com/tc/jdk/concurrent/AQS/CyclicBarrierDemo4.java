@@ -13,18 +13,41 @@ import java.util.concurrent.TimeUnit;
  * 2、例子：客车坐满，就发车
  */
 public class CyclicBarrierDemo4 {
-    //定义CyclicBarrier,包含4个线程，一个触发动作
+    //定义CyclicBarrier,包含3个线程，一个触发动作
     private static final CyclicBarrier barrier = new CyclicBarrier(3, () ->{
         System.out.println("发车了");
     });
 
     public static void main(String[] args) throws InterruptedException {
-        for (int i = 0; i < 3; i++) {
-            if (i % 3 ==0) {
-                TimeUnit.SECONDS.sleep(2);
-            }
+        for (int i = 0; i < 10; i++) {
+            TimeUnit.SECONDS.sleep(1);
             new Thread(new MyRunnable(barrier)).start();
         }
+
+
+//        乘客：Thread-2等待出发
+//        乘客：Thread-3等待出发
+//        乘客：Thread-4等待出发
+//                发车了
+//        乘客：Thread-4出发
+//        乘客：Thread-3出发
+//        乘客：Thread-2出发
+//        乘客：Thread-5等待出发
+//        乘客：Thread-6等待出发
+//        乘客：Thread-7等待出发
+//                发车了
+//        乘客：Thread-5出发
+//        乘客：Thread-6出发
+//        乘客：Thread-7出发
+//        乘客：Thread-8等待出发
+//        乘客：Thread-9等待出发
+//        乘客：Thread-10等待出发
+//                发车了
+//        乘客：Thread-10出发
+//        乘客：Thread-8出发
+//        乘客：Thread-9出发
+//        乘客：Thread-11等待出发
+//
 
     }
 

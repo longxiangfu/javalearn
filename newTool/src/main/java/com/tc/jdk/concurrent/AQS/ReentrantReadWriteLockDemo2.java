@@ -16,7 +16,6 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 public class ReentrantReadWriteLockDemo2 {
 	private static Map<String, Object> map = new HashMap<String, Object>();//缓存器
 	private static final ReadWriteLock rw = new ReentrantReadWriteLock();
-	private volatile boolean cacheValid;
 
 	public static void main(String[] args) {
 		Object value = null;

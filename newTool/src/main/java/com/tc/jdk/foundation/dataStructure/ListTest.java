@@ -13,21 +13,21 @@ import java.util.List;
 public class ListTest {
     public static void main(String[] args) {
         // ArrayList
-        List list = new ArrayList<String>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(3);
-        System.out.println(list.indexOf(2));
-        System.out.println(Convert.toStr(list)); // [1, 2, 3, 3]
-
-
-        // LinkedList
-//        List list = new LinkedList();
+//        List list = new ArrayList<String>();
 //        list.add(1);
 //        list.add(2);
 //        list.add(3);
-//        System.out.println(Convert.toStr(list)); // [1, 2, 3]
+//        list.add(3);
+//        System.out.println(list.indexOf(2));
+//        System.out.println(Convert.toStr(list)); // [1, 2, 3, 3]
+
+
+        // LinkedList
+        List list = new LinkedList();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        System.out.println(Convert.toStr(list)); // [1, 2, 3]
 
 
         // ArrayDeque  队列-先进先出

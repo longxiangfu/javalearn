@@ -2,7 +2,6 @@ package com.tc.hutoolTest.io;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.IoUtil;
-import sun.nio.ch.IOUtil;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

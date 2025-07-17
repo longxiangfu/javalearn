@@ -13,16 +13,16 @@ public class ChaRu {
 
     public static void main(String[] args) {
         int[] array = Base.array;
-        int length = array.length;
-        for (int i = 0; i < length - 1; i++) {//length-1轮
-            int current = array[i + 1];
+        for (int i = 0; i < array.length-1; i++) {
+            int current = array[i+1];
             int preIndex = i;
-            while(preIndex >=0 && current < array[preIndex]){
-                array[preIndex + 1] = array[preIndex];
+            while(preIndex >= 0 && current < array[preIndex]){
+                array[preIndex+1] = array[preIndex];
                 preIndex--;
             }
-            array[preIndex + 1] = current;
+            array[preIndex+1] = current;
         }
         System.out.println(Arrays.toString(array));
+
     }
 }

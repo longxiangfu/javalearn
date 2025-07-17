@@ -55,7 +55,7 @@ public class LianBiaoFanZhuan {
         // 递归找到最后一个节点，从最后一个节点开始处理
         ListNode newNode = recursion(head.next);
 
-        // 算法
+        // 算法（从倒数第二个开始）
         head.next.next = head;
         head.next = null;
 

@@ -20,6 +20,8 @@ public class LinkedListDemo {
         list.add("aa");
         list.add("bb");
         System.out.println(list); // [aa, bb]
+
+        list.sort((a1, a2) -> a2.toString().compareTo(a1.toString()));
     }
 
 

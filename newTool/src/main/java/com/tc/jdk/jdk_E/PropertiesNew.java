@@ -17,7 +17,13 @@ package com.tc.jdk.jdk_E;
 
 import cn.hutool.core.io.LineHandler;
 
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
+import java.time.temporal.ChronoField;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -51,6 +57,19 @@ import java.util.stream.Collectors;
 public class PropertiesNew {
 	static int outerStaticNum;
 	int outerNum;
+
+	public static void main(String[] args) {
+//		demo();
+//		demo1();
+//		demo2();
+//		demo3();
+//		demo4();
+//		demo5();
+//		demo6();
+		demo7();
+//		demo8();
+
+	}
 
 	/**
 	 * Lambd表达式
@@ -281,19 +300,19 @@ public class PropertiesNew {
 //		System.out.println(compatator.compare(p1, p2));
 //		System.out.println(compatator.reversed().compare(p1, p2));
 //
-		/*
-		 * Optional类:防止空指针异常的辅助类型
-		 */
-		Optional<String> optional = Optional.of("bam");
-//		Optional<String> optional = Optional.empty();
-		System.out.println(optional.isPresent());//若传入参数不为null,则返回true  true
-		System.out.println(optional.get());//传入的参数不为null,这返回该参数；若为null,抛异常  bam
-		System.out.println(optional.orElse("fallback"));//传入的参数不为null,这返回该参数；否则返回指定参数  bam
-		Consumer<String> consumer = str ->System.out.println("我接收了一个参数："+str);
-		optional.ifPresent(consumer); // 若入参不为null,则将入参传给Comsumer   我接收了一个参数：bam
-		//optional.ifPresent(str ->System.out.println("我接收了一个参数："+str));
-
-
+//		/*
+//		 * Optional类:防止空指针异常的辅助类型
+//		 */
+//		Optional<String> optional = Optional.of("bam");
+////		Optional<String> optional = Optional.empty(); // 参数为null
+//		System.out.println(optional.isPresent());//若传入参数不为null,则返回true  true
+//		System.out.println(optional.get());//传入的参数不为null,这返回该参数；若为null,抛异常  bam
+//		System.out.println(optional.orElse("fallback"));//传入的参数不为null,这返回该参数；否则返回指定参数  bam
+//		Consumer<String> consumer = str ->System.out.println("我接收了一个参数："+str);
+//		optional.ifPresent(consumer); // 若入参不为null,则将入参传给Comsumer   我接收了一个参数：bam
+//		//optional.ifPresent(str ->System.out.println("我接收了一个参数："+str));
+//
+//
 //		/*
 //		 * Stream接口:中间操作返回Stream本身，最终操作返回一特定类型的计算结果，这样可以将多个操作依次串起来
 //		 * 分为串行流Collection.stream()和并行流Collection.parallelStream()
@@ -304,16 +323,17 @@ public class PropertiesNew {
 //			UUID uuid = UUID.randomUUID();
 //			values.add(uuid.toString());
 //		}
-//		
-//		//串行(并行)排序
+//
+//		//串行(并行)排序   并行流在数据量大的时候有优势
 //		long t0 = System.nanoTime();//纳秒；基于的时间点是随机的，但是对于同一个JVM里，不同地方使用到的基点时间是一样的
 ////		long t2 = System.currentTimeMillis();//毫秒；系统当前时间和1970-01-01之前间隔时间的毫秒数，用于计算代码执行消耗的时间 ，也可以和Date类方便的转换
-//		long count = values.stream().sorted().count();//970ms
-////		long count = values.parallelStream().sorted().count();//607ms
+////		long count = values.stream().sorted().count(); // // sequential sort took:26 ms
+//		long count = values.parallelStream().sorted().count(); // sequential sort took:2 ms
 //		long t1 = System.nanoTime();
+//		// 秒   毫秒MILLISECONDS  微妙MICROSECONDS  纳秒NANOSECONDS
 //		long mills = TimeUnit.NANOSECONDS.toMillis(t1 - t0);
 //		System.out.println(String.format("sequential sort took:%d ms", mills));
-//		
+//
 //		/*
 //		 * Filter过滤
 //		 */
@@ -327,7 +347,7 @@ public class PropertiesNew {
 //		stringCollection.add("bbb2");
 //		stringCollection.add("ddd1");
 //		stringCollection.stream().filter(s -> s.startsWith("a")).forEach(System.out::println);
-//		
+//
 //		/*
 //		 * Sort排序
 //		 */
@@ -339,7 +359,7 @@ public class PropertiesNew {
 //	     * Map映射
 //	     */
 //        stringCollection.stream().map(String::toUpperCase).sorted().forEach(System.out::println);
-//        
+//
 //        /*
 //         * Math匹配
 //         */
@@ -354,7 +374,7 @@ public class PropertiesNew {
 //         * Reduce规约
 //         */
 //        Optional<String> reduced = stringCollection.stream().sorted().reduce((s1,s2) -> s1+"#"+s2);
-//        reduced.ifPresent(System.out::println);
+//        reduced.ifPresent(System.out::println); // aaa1#aaa2#bbb1#bbb2#bbb3#ccc#ddd1#ddd2
 //        
 //        /*
 //         * Map类型：Map类型不支持Stream(java.util.Collection的子类，List或者Set支持)，
@@ -364,14 +384,15 @@ public class PropertiesNew {
 //        Map<Integer,String> map = new HashMap<>();
 //        map.put(7, "777");
 //        for(int i = 0;i <10;i++) {
-//        	map.putIfAbsent(i, "val"+i);//如果某key对应有确切的valus,则返回该value,否则返回传入的value
+//        	map.putIfAbsent(i, "val"+i);//如果某key对应有确切的value,则返回该value,否则返回传入的value
 //        }
-//        System.out.println(map.toString());
+//        System.out.println(map);
 //        //2、computeIfPresent()：如果有的话，则执行
 //        map.computeIfPresent(3, (num,val) -> val + num);
 //        System.out.println(map.get(3));//val33
 //        map.computeIfPresent(9, (num,val) -> null);
 //        System.out.println(map.containsKey(9));//false
+//		System.out.println(map); // {0=val0, 1=val1, 2=val2, 3=val33, 4=val4, 5=val5, 6=val6, 7=777, 8=val8}
 //        //3、computeIfAbsent()：如果缺少的话，则执行
 //        map.computeIfAbsent(23, num -> "val" + num);
 //        System.out.println(map.containsKey(23));//true
@@ -386,70 +407,101 @@ public class PropertiesNew {
 //        System.out.println(map.getOrDefault(42, "not found"));
 //        //merge()
 //        map.merge(9, "val9", (value,newValue) -> value.concat(newValue));
-//        System.out.println(map.get(9));
+//        System.out.println(map.get(9)); // val9
 //        map.merge(9, "concat", (value,newValue) -> value.concat(newValue));
-//        System.out.println(map.get(9));
-//        
+//        System.out.println(map.get(9)); // val9concat
+
     }
-//	/**
-//	 * dataAPI
-//	 */
-//	public static void demo7() {
-////		Clock clock = Clock.systemDefaultZone();
-////		System.out.println(clock);//SystemClock[Asia/Shanghai]
-////		System.out.println(clock.millis());//1510819384601
-////		Instant instant = clock.instant();
-////		Date legacyDate = Date.from(instant);
-////		System.out.println(legacyDate);//Thu Nov 16 16:03:04 CST 2017
+
+	/**
+	 * dataAPI
+	 */
+	public static void demo7() {
+//		Clock clock = Clock.systemDefaultZone();
+//		System.out.println(clock);//SystemClock[Asia/Shanghai]
+//		System.out.println(clock.millis());//1510819384601
+//		Instant instant = clock.instant();
+//		Date legacyDate = Date.from(instant);
+//		System.out.println(legacyDate);//Thu Nov 16 16:03:04 CST 2017
 //		
-//		System.out.println(ZoneId.getAvailableZoneIds());
-//		ZoneId zone1 = ZoneId.of("Asia/Shanghai");//ZoneRules[currentStandardOffset=+08:00]
-//		System.out.println(zone1.getRules());
+//		System.out.println(ZoneId.getAvailableZoneIds()); // 获取所有时区
+//		ZoneId zone1 = ZoneId.of("Asia/Shanghai");
+//		System.out.println(zone1.getRules()); // oneRules[currentStandardOffset=+08:00]
 //		ZoneId zone2 = ZoneId.of("Brazil/East");
-//		System.out.println(zone2.getRules());
-//		
+//		System.out.println(zone2.getRules()); // ZoneRules[currentStandardOffset=-03:00]
+//
 //		LocalTime now1 = LocalTime.now(zone1);
 //		LocalTime now2 = LocalTime.now(zone2);
 //		System.out.println(now1.isBefore(now2));//false
 //		long hoursBetween = ChronoUnit.HOURS.between(now1, now2);
 //		long minutesBetween = ChronoUnit.MINUTES.between(now1, now2);
-//		System.out.println(hoursBetween);//-10
-//		System.out.println(minutesBetween);//-600
-//		LocalTime late = LocalTime.of(23, 59, 59);//23:59:59
-//		System.out.println(late);
-//		DateTimeFormatter germanFormatter = DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).withLocale(Locale.GERMAN);
-//		LocalTime leetTime = LocalTime.parse("13:37",germanFormatter);
-//		System.out.println(leetTime);//13:37
+//		System.out.println(hoursBetween);//-11
+//		System.out.println(minutesBetween);//-660
+//		LocalTime late = LocalTime.of(23, 59, 59);
+//		System.out.println(late); // 23:59:59
+//
 //		
 //		LocalDate today = LocalDate.now();
-//		LocalDate tommorow = today.plus(1,ChronoUnit.DAYS);
-//		System.out.println(tommorow.minusDays(2));
+//		System.out.println("今天：" + today); // 今天：2025-07-24
+//		LocalDate tommorow = today.plus(1, ChronoUnit.DAYS);
+//		System.out.println(String.format("明天：%s", tommorow)); // 明天：2025-07-25
+//		LocalDate zuoTian = today.minusDays(1);
+//		System.out.println("昨天：" + zuoTian); // 昨天：2025-07-23
 //		LocalDate independenceDay = LocalDate.of(2014, Month.JULY, 4);
-//		System.out.println(independenceDay.getDayOfWeek());
+//		System.out.println(independenceDay.getDayOfWeek()); // FRIDAY
 //		DateTimeFormatter getmanFormatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM).withLocale(Locale.GERMAN);
 //		LocalDate xmas = LocalDate.parse("24.12.2014",getmanFormatter);
-//		System.out.println(xmas);// 2014-12-24
+//		System.out.println(xmas); // 2014-12-24
 //		
 //		LocalDateTime sylvester = LocalDateTime.of(2014, Month.DECEMBER, 31, 23, 59, 59);
+//		System.out.println("时间；" + sylvester);
+//		System.out.println(sylvester.plusDays(1)+" " + sylvester.minusDays(1)); // "2015-01-01T23:59:59 2014-12-30T23:59:59"
 //		System.out.println(sylvester.getDayOfWeek());// WEDNESDAY
 //		System.out.println(sylvester.getMonth());// DECEMBER
 //		long minuteOfDay = sylvester.getLong(ChronoField.MINUTE_OF_DAY);
-//		System.out.println(minuteOfDay);// 1439
+//		System.out.println(minuteOfDay);// 1439   一天中的分钟数
 //		Instant instant = sylvester.atZone(ZoneId.systemDefault()).toInstant();
-//		System.out.println(ZoneId.systemDefault());
+//		System.out.println(ZoneId.systemDefault()); // Asia/Shanghai
 //		Date legacyDate = Date.from(instant);
 //		System.out.println(legacyDate);// Wed Dec 31 23:59:59 CET 2014
-//	}
-		
-	public static void main(String[] args) {
-//		demo();
-//		demo1();
-//		demo2();
-//		demo3();
-//		demo4();
-//		demo5();
-		demo6();
-//		demo7();
+//
+//		// 时间和字符串互转
+//		// 字符串转时间
+//		String localDateStr = "2020-12-15";
+//		LocalDate localData = LocalDate.parse(localDateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd")); // 2020-12-15
+//		System.out.println(localData); // 2020-12-15
+//		String localDateTimeStr = "2020-12-15 12:12:12";
+//		LocalDateTime localDataTime = LocalDateTime.parse(localDateTimeStr, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+//		System.out.println(localDataTime); // 2020-12-15T12:12:12
+//		System.out.println(localDataTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))); // "2020-12-15 12:12:12"
+//		// 时间转字符串
+//		LocalDate localDate = LocalDate.now();
+//		System.out.println(localDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))); // "2025-07-24"
+//		LocalDateTime localDateTime = LocalDateTime.now();
+//		System.out.println(localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))); // "2025-07-24 20:05:39"
+	}
+
+	/**
+	 * flatMap: 将流中元素映射成流，然后把所有流合并成一个流
+	 */
+	private static void demo8() {
+		/*
+		处理嵌套列表
+		 */
+		ArrayList<List<String>> list1 = new ArrayList<>();
+		ArrayList<String> list2 = new ArrayList<>();
+		list2.add("a");
+		list2.add("b");
+		ArrayList<String> list3 = new ArrayList<>();
+		list3.add("c");
+		list3.add("d");
+		ArrayList<String> list4 = new ArrayList<>();
+		list4.add("e");
+		list4.add("f");
+		list1.add(list2);
+		list1.add(list3);
+		list1.add(list4);
+		list1.stream().flatMap(e -> e.stream()).forEach(System.out::println);
 
 	}
 

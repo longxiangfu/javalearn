@@ -30,7 +30,7 @@
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
-            <version>5.8.8</version>
+            <version>5.8.24</version>
         </dependency>
 
         <!--   二维码     -->
@@ -50,7 +50,7 @@
         <dependency>
             <groupId>commons-net</groupId>
             <artifactId>commons-net</artifactId>
-            <version>3.6</version>
+            <version>3.9.0</version>
         </dependency>
         <!--    ftp服务端    -->
         <dependency>

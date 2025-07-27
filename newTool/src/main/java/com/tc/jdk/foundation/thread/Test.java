@@ -1,5 +1,6 @@
 package com.tc.jdk.foundation.thread;
 
+import java.io.StringReader;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
@@ -12,7 +13,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class Test {
     private static volatile ArrayBlockingQueue lockObj = new ArrayBlockingQueue<String>(1);
 
-    private static final ReentrantLock lock = new ReentrantLock();
+    private static final ReentrantLock lock = new ReentrantLock(true);
     private static final Condition contion1 = lock.newCondition(); // 线程1进入的条件队列
     private static final Condition contion2 = lock.newCondition(); // 线程2进入的条件队列
 

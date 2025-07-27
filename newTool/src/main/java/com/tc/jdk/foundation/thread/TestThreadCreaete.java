@@ -8,18 +8,14 @@ import java.util.concurrent.FutureTask;
  */
 public class TestThreadCreaete {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-//        MyThread myThread = new MyThread();
-//        myThread.start();
+        MyThread myThread = new MyThread();
+        myThread.start();
 
-//        MyRunnable myRunnable = new MyRunnable();
-//        new Thread(myRunnable).start();
+        MyRunnable myRunnable = new MyRunnable();
+        myRunnable.run();
 
-        MyCallable myCallable = new MyCallable();
-        FutureTask<String> futureTask = new FutureTask<>(myCallable);
-        new Thread(futureTask).start();
-        System.out.println(futureTask.get());
-
-        System.out.println("主线程："+ Thread.currentThread().getName());
+        String result = new MyCallable().call();
+        System.out.println(result);
 
     }
 }

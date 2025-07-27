@@ -8,7 +8,7 @@ package com.tc.jdk.javaObject;
  * 此时user对象在栈上分配，随着方法的结束，对象会自动消除，因此不会产生大量的GC
  *
  * 2、-Xmx15m -Xms15m -XX:+DoEscapeAnalysis -XX:+PrintGC -XX:-EliminateAllocations
- * -Xmx15m -Xms15m -XX:-DoEscapeAnalysis -XX:+PrintGC -XX:+EliminateAllocations
+ * -Xmx15m -Xms15m -XX:-DoEscapeAnalysis -XX:+PrintGC -XX:-EliminateAllocations
  * 此时user对象在堆上分配，会产生大量的GC
  */
 public class AllocationOnStack {

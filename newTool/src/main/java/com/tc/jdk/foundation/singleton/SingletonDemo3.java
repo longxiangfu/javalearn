@@ -11,6 +11,7 @@ public class SingletonDemo3 {
     private SingletonDemo3(){};
 
     public static synchronized SingletonDemo3 getInstance(){
+        instance = new SingletonDemo3();
         return instance;
     }
 

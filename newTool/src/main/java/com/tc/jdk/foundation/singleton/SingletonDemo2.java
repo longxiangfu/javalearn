@@ -10,7 +10,12 @@ public class SingletonDemo2 {
     private SingletonDemo2(){};
 
     public static SingletonDemo2 getInstance(){
+        instance = new SingletonDemo2();
         return instance;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(SingletonDemo2.getInstance());
     }
 
 }

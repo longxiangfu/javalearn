@@ -41,7 +41,7 @@ public class Test {
         LocalDateTime btime = atime.plusDays(1);
         int value = atime.compareTo(btime);
         if (value == -1) {
-            System.out.println(atime + "<" + btime);
+            System.out.println(atime + "<" + btime); // 2025-07-24T22:38:30.895<2025-07-25T22:38:30.895
         }else if(value == 0){
             System.out.println(atime + "=" + btime);
         }else {

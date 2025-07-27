@@ -16,6 +16,7 @@ public class MinTest {
         Optional<Double> minOptional = list.stream().min(Comparator.comparingDouble(Double::longValue));
         if (minOptional.isPresent()) {
             Double aDouble = minOptional.get();
+            System.out.println(aDouble);
         }
 
     }

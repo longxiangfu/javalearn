@@ -15,19 +15,20 @@ public class Demo {
         Stream<Integer> stream = Arrays.stream(new Integer[]{1, 2, 3, 4, 5});
         //求和
 //        Integer sum = stream.reduce(0, Integer::sum);
+//        Integer sum = stream.reduce(0, (a, b) -> a + b);
         //求和
 //        stream.reduce((i, j) -> i + j).ifPresent(System.out::println);
+//        stream.reduce(Integer::sum).ifPresent(System.out::println);
         //求最大值
 //        stream.reduce(Integer::max).ifPresent(System.out::println);
+//        stream.reduce((a,b) -> Integer.max(a,b)).ifPresent(System.out::println);
         //求最小值
 //        stream.reduce(Integer::min).ifPresent(System.out::println);
+//        stream.reduce((a,b)->Integer.min(a,b)).ifPresent(System.out::println);
         //做逻辑
 //        stream.reduce((i, j) -> i > j ? j : i).ifPresent(System.out::println);
-        //求逻辑求乘积
+        //做逻辑求乘积
         Optional.ofNullable(stream.filter(i -> i % 2 == 0).reduce((i, j) -> i * j)).ifPresent(System.out::println);
-
-
-//        System.out.println(sum);
 
     }
 }

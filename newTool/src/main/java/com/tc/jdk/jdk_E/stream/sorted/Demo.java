@@ -25,7 +25,7 @@ public class Demo {
             System.out.println(e);
         });
 
-        //自定义排序规则
+        //自定义排序规则  按年龄排序
         Person p = Person.builder().id(1).name("lxf").age(30).build();
         Person p2 = Person.builder().id(2).name("lxf1").age(35).build();
         List<Person> pList = new ArrayList<>();

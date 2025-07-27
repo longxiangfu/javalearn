@@ -27,20 +27,25 @@ public class NullPointer {
 		 * Optional一般只判断对象
 		 * 其他的像String  HashMap  List使用Hutool工具
 		 */
-		Outer outer = new Outer();
-		Nested nested = new Nested();
-		Inner inner = new Inner();
-		inner.setFoo("foo");
+//		Outer outer = new Outer();
+//		Nested nested = new Nested();
+//		Inner inner = new Inner();
+//		inner.setFoo("foo");
 //		nested.setInner(inner);
-		outer.setNested(nested);
-		String foo = Optional.ofNullable(outer)
-				.map(Outer::getNested)
-				.map(Nested::getInner)
-				.map(Inner::getFoo)
-//				.orElseThrow(RuntimeException::new);
-		        .orElseThrow(() -> new RuntimeException("运行时异常"));
-		System.out.println("foo:" + foo); // foo:foo
+//		outer.setNested(nested);
+//		String foo = Optional.ofNullable(outer)
+//				.map(Outer::getNested)
+//				.map(Nested::getInner)
+//				.map(Inner::getFoo)
+////				.orElseThrow(RuntimeException::new);
+//		        .orElseThrow(() -> new RuntimeException("运行时异常"));
+//		System.out.println("foo:" + foo); // foo:foo
 
+
+		String str = "123";
+//		String str = null;
+		str = Optional.ofNullable(str).orElseThrow(RuntimeException::new);
+		System.out.println("str:" + str);
 
 	}
 

@@ -14,15 +14,15 @@ public class PeriodAndDuration {
         LocalDate localDate = LocalDate.now();
         LocalDate localDate1 = LocalDate.of(1990, Month.OCTOBER, 16);
         Period period = Period.between(localDate1, localDate);
-        System.out.println(period.getYears());
-        System.out.println(period.getMonths());
-        System.out.println(period.getDays());
+        System.out.println(period.getYears()); // 34
+        System.out.println(period.getMonths()); // 9
+        System.out.println(period.getDays()); // 8
 
         LocalTime localTime = LocalTime.of(12, 12, 12);
         LocalTime localTime1 = LocalTime.of(12, 13, 27);
         Duration duration = Duration.between(localTime, localTime1);
-        System.out.println(duration.getSeconds());
-        System.out.println(duration.getNano());
+        System.out.println(duration.getSeconds()); // 75
+        System.out.println(duration.getNano()); // 0
 
     }
 }

@@ -11,12 +11,15 @@ import java.util.Optional;
 public class OptionalDemo {
     public static void main(String[] args){
         /*
-        Optional.offNullable     创建Optional
+        创建Optional
+        Optional.offNullable()   值可以为null
+        Optional.of()   值不能为null，否则报错
          */
 //        Optional<Integer> op1 = Optional.ofNullable(1);
 //        Optional<Integer> op2 = Optional.ofNullable(null);
 //        System.out.println(op1);//Optional[1]
 //        System.out.println(op2);//Optional.empty
+//        System.out.println(Optional.of(null)); // 报错
 
         /*
         Optional.empty():所有null包装成的Optional对象
@@ -34,24 +37,24 @@ public class OptionalDemo {
          */
 //        Optional<Integer> optional1 = Optional.ofNullable(1);
 //        Optional<Integer> optional2 = Optional.ofNullable(null);
-//        System.out.println(optional1.isPresent() == true);
-//        System.out.println(optional2.isPresent() == true);
+//        System.out.println(optional1.isPresent() == true); // true
+//        System.out.println(optional2.isPresent() == true); // false
 
         /*
         ifPresent(Consumer consumer):如果Optional对象保存的值不是null,则调用Consumer对象，否则不调用
          */
 //        Optional<Integer> optional1 = Optional.ofNullable(1);
 //        Optional<Integer> optional2 = Optional.ofNullable(null);
-//        optional1.ifPresent((a) -> System.out.println(a));
-//        optional2.ifPresent((a) -> System.out.println(a));
+//        optional1.ifPresent((a) -> System.out.println(a)); // 1
+//        optional2.ifPresent((a) -> System.out.println(a)); // 不会执行
 
         /*
         orElse(value):如果Optional对象保存的值不是null，则返回原来的值，否则返回value
          */
 //        Optional<Integer> optional1 = Optional.ofNullable(1);
 //        Optional<Integer> optional2 = Optional.ofNullable(null);
-//        System.out.println(optional1.orElse(1000) == 1);
-//        System.out.println(optional2.orElse(1000) == 1000);
+//        System.out.println(optional1.orElse(1000) == 1); // true
+//        System.out.println(optional2.orElse(1000) == 1000); // true
 
         /*
         orElseGet(Supplier supplier):功能与orElse一样，只不过参数是一个对象
@@ -60,21 +63,25 @@ public class OptionalDemo {
 //        Optional<Integer> optional2 = Optional.ofNullable(null);
 //        System.out.println(optinal1.orElseGet(() ->{
 //            return 1000;
-//        }) == 1);
+//        }) == 1); // false
+//        System.out.println(optional2.orElseGet(() ->{
+//            return 1000;
+//        }) == 1); // false
 
         /*
-        orElseThrow():值不存在则抛异常，存在什么也不做
+        orElseThrow():值不存在则抛异常，存在值则返回值
          */
 //        Optional<Integer> optional1 = Optional.ofNullable(1);
 //        Optional<Integer> optional2 = Optional.ofNullable(null);
 //        try {
-//            optional1.orElseThrow(() ->{throw new IllegalStateException();});
+//            Integer a = optional1.orElseThrow(() ->{throw new IllegalStateException();});
+//            System.out.println("optional1:" + a); // optional1:1
 //        }catch (Throwable e){
 //            e.printStackTrace();
 //        }
 //
 //        try{
-//            optional2.orElseThrow(() ->{throw new IllegalStateException();});
+//            optional2.orElseThrow(() ->{throw new IllegalStateException();}); // 抛异常
 //        }catch (Throwable e){
 //                e.printStackTrace();
 //        }
@@ -87,11 +94,8 @@ public class OptionalDemo {
         Optional<Integer> optional2 = Optional.ofNullable(null);
         Optional<String> stringOptional1 = optional1.map(a -> "key" + a);
         Optional<String> stringOptional2 = optional2.map(a -> "key" + a);
-        System.out.println(stringOptional1.get());
-        System.out.println(stringOptional2.isPresent());
-
-
-
+        System.out.println(stringOptional1.get()); // key1
+        System.out.println(stringOptional2.orElseThrow(RuntimeException::new)); // 抛异常
 
     }
 

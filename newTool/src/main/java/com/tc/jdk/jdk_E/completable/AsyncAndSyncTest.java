@@ -50,7 +50,7 @@ public class AsyncAndSyncTest {
         // 那么只有当前线程（主线程）自己来执行whenComplete里面的内容了。
         f.whenComplete((i, ex) -> {
             // 这个场景下，whenComplete的回调的执行线程会是子线程A
-            logger.info("do something after complete begin");
+            logger.info(Thread.currentThread().getName() + " do something after complete begin");
             try {
                 logger.info("沉睡10s");
                 Thread.sleep(10000);
@@ -66,7 +66,7 @@ public class AsyncAndSyncTest {
 //        2020-12-18 15:10:56.461 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:29  - 子线程A启动Thread-0
 //        2020-12-18 15:10:56.466 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:31  - 子线程A沉睡5s
 //        2020-12-18 15:11:01.467 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:36  - 子线程A令future完成
-//        2020-12-18 15:11:01.467 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:49  - do something after complete begin
+//        2020-12-18 15:11:01.467 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:49  - Thread-0 do something after complete begin
 //        2020-12-18 15:11:01.467 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:51  - 沉睡10s
 //        2020-12-18 15:11:11.467 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:56  - do something after complete end
 //        2020-12-18 15:11:11.469 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:38  - 子线程A结束
@@ -77,7 +77,7 @@ public class AsyncAndSyncTest {
 
         new Thread(() -> {
             // 子线程A启动
-            logger.info("子线程A启动");
+            logger.info("子线程A启动" + Thread.currentThread().getName());
             try {
                 logger.info("子线程A沉睡5s");
                 Thread.sleep(5000);
@@ -97,7 +97,7 @@ public class AsyncAndSyncTest {
         }
         f.whenComplete((i, ex) -> {
             // 这个场景下，whenComplete的回调的执行线程会是主线程
-            logger.info("do something after complete begin");
+            logger.info(Thread.currentThread().getName() + " do something after complete begin");
             try {
                 logger.info("沉睡10s");
                 Thread.sleep(10000);
@@ -113,11 +113,11 @@ public class AsyncAndSyncTest {
         System.in.read();
     }
 //    2020-12-18 15:11:45.380 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:96  - 主线程沉睡10s
-//2020-12-18 15:11:45.380 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:76  - 子线程A启动
+//2020-12-18 15:11:45.380 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:76  - 子线程A启动Thread-0
 //2020-12-18 15:11:45.385 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:78  - 子线程A沉睡5s
 //2020-12-18 15:11:50.385 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:83  - 子线程A令future完成
 //2020-12-18 15:11:50.385 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:85  - 子线程A结束
-//2020-12-18 15:11:55.387 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:104 - do something after complete begin
+//2020-12-18 15:11:55.387 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:104 - main do something after complete begin
 //2020-12-18 15:11:55.387 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:106 - 沉睡10s
 //2020-12-18 15:12:05.388 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:112 - do something after complete end
 //2020-12-18 15:12:05.388 INFO  com.lxf.jdk.jdk_E.completable.AsyncAndSyncTest Line:116 - main over

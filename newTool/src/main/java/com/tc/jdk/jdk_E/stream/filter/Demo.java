@@ -4,6 +4,7 @@ package com.tc.jdk.jdk_E.stream.filter;
 import com.tc.jdk.jdk_E.stream.sorted.Person;
 
 import java.util.ArrayList;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 
 /**
@@ -28,13 +29,12 @@ public class Demo {
 //            return e.getAge() > 31;
 //        }).forEach(System.out::println);
 //
-//        //limit():截断
-//        pList.stream().limit(1).forEach(System.out::println);
+//        //limit():截断   获取前两个
+//        pList.stream().limit(2).forEach(System.out::println);
 //
-//        //skip():与limit()互斥，跳过元素
-//        pList.stream().skip(1).forEach(System.out::println);
-
-//        pList.stream().forEach(System.out::println);
+//        //skip():与limit()互斥，跳过元素   跳过前两个
+//        pList.stream().skip(2).forEach(System.out::println);
+//
         //distinct():去重
 //        pList.stream().distinct().forEach(System.out::println);
 
@@ -43,7 +43,7 @@ public class Demo {
 //        System.out.println(num.getMax() + " " + num.getMin() + " " + num.getSum() + " " + num.getAverage() + " " + num.getCount());
 
         //findFirst():获取第一个元素
-        Person pFirst = pList.stream().findFirst().get();
-        System.out.println(pFirst);
+//        Person pFirst = pList.stream().findFirst().get();
+//        System.out.println(pFirst);
     }
 }

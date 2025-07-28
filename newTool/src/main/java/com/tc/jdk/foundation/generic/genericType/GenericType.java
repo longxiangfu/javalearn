@@ -5,7 +5,7 @@ import java.lang.reflect.Type;
 
 /**
  * 泛型  T 类型
- * 获取泛型参数类型
+ * 获取泛型具体的参数类型
  * @param <T>
  */
 public class GenericType<T> {

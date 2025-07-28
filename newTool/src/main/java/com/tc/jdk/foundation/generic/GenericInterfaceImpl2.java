@@ -13,7 +13,7 @@ public class GenericInterfaceImpl2 implements GenericIntereface<String> {
 
     public static void main(String[] args) {
         GenericInterfaceImpl2 genericInterfaceImpl2 = new GenericInterfaceImpl2();
-        System.out.println(genericInterfaceImpl2.getData());
+        System.out.println(genericInterfaceImpl2.getData()); // GenericInterfaceImpl2
     }
 
 }

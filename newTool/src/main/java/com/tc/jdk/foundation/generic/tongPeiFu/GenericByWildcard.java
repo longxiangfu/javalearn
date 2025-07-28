@@ -4,8 +4,8 @@ import com.tc.jdk.foundation.generic.GenericClass;
 
 /**
  * 泛型通配符：?
- * 有限定：? extends     ? super
- * 无限定：?
+ * 1、有限定：? extends     ? super
+ * 2、无限定：?
  */
 public class GenericByWildcard {
 
@@ -25,6 +25,7 @@ public class GenericByWildcard {
 
     /*
     指定泛型类型的上界,用extends
+    ? extends T : 该泛型表示包括T在内的所有子类
      */
     private static void printExtends(GenericClass<? extends Fruit> genericClass){
         System.out.println(genericClass.getData().getClor());
@@ -51,6 +52,7 @@ public class GenericByWildcard {
 
     /*
     指定泛型类型下界，用super
+    ？super T : 该泛型表示包括T在内的所有父类
      */
     private static void printSuper(GenericClass<? super Apple> genericClass){
         System.out.println(genericClass.getData());
@@ -97,7 +99,7 @@ public class GenericByWildcard {
 
     public static void main(String[] args) {
         use();
-//        useExtends();
+        useExtends();
 //        useSuper();
 //        userNoLimit();
     }

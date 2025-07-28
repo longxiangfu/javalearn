@@ -12,6 +12,8 @@ import java.util.List;
  * java.lang.reflect.Type，是所有类型的高级接口
  */
 public class GsonGeneric {
+    private static final Gson GSON = new Gson();
+
     public static class Person {
         private String name;
         private int age;
@@ -31,18 +33,24 @@ public class GsonGeneric {
     }
 
     public static void main(String[] args) {
-        Gson gson = new Gson();
         List<Person> personList = new ArrayList<>();
         for (int i = 0; i < 5; i++) {
             personList.add(new Person("name" + i, 18 + i));
         }
         // Serialization
-        String json = gson.toJson(personList);
+        String json = GSON.toJson(personList);
         System.out.println(json);
+//        [{"name":"name0","age":18},{"name":"name1","age":19},{"name":"name2","age":20},{"name":"name3","age":21},{"name":"name4","age":22}]
         // Deserialization
-        Type personType = new TypeToken<List<Person>>() {}.getType();
-        List<Person> personList2 = gson.fromJson(json, personType);
-        gson.fromJson(json, Person.class);
+        Type personType = new TypeToken<List<Person>>(){}.getType();
+        List<Person> personList2 = GSON.fromJson(json, personType);
         System.out.println(personList2);
+//        [Person{name='name0', age=18}, Person{name='name1', age=19}, Person{name='name2', age=20}, Person{name='name3', age=21}, Person{name='name4', age=22}]
+
+        Person p = new Person("lxf", 35);
+        String pJson = GSON.toJson(p);
+        System.out.println(pJson); // {"name":"lxf","age":35}
+        Person p1 = GSON.fromJson(pJson, Person.class);
+        System.out.println(p1); // Person{name='lxf', age=35}
     }
 }

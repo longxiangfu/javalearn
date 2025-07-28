@@ -52,10 +52,10 @@ public class GenericMethod2 {
 //        genericClass.show01(dog); // Dog{}
 
         // 在使用时指定
-//        GenericClass genericClass = new GenericClass<>();
-//        genericClass.show02(animal); // Animal{}
-//        genericClass.show02(dog); // Dog{}
-//        genericClass.show02(fruit); // Fruit{}
+        GenericClass genericClass = new GenericClass<>();
+        genericClass.show02(animal); // Animal{}
+        genericClass.show02(dog); // Dog{}
+        genericClass.show02(fruit); // Fruit{}
 
     }
 

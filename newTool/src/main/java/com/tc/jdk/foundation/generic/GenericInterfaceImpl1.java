@@ -19,6 +19,6 @@ public class GenericInterfaceImpl1<T> implements GenericIntereface<T> {
     public static void main(String[] args) {
         GenericInterfaceImpl1<String> genericInterfaceImpl1 = new GenericInterfaceImpl1<>();
         genericInterfaceImpl1.setData("GenericInterfaceImpl1");
-        System.out.println(genericInterfaceImpl1.getData());
+        System.out.println(genericInterfaceImpl1.getData()); // GenericInterfaceImpl1
     }
 }

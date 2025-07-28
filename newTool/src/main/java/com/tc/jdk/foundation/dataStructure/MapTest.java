@@ -35,17 +35,17 @@ public class MapTest {
 
 
         // 经过实验，hashmap在遍历时删除元素不会报错
-        HashMap map = new HashMap<String, String>();
-        map.put("name", "longxiangfu");
-        map.put("age", "30");
-        map.put("sex", "nan");
-        Set<Map.Entry<String, String>> set = map.entrySet();
-        for (Map.Entry<String, String> entry : set) {
-            if (entry.getKey().equals("age")) {
-                map.remove(entry.getKey());
-            }
-        }
-        System.out.println(map);
+//        HashMap map = new HashMap<String, String>();
+//        map.put("name", "longxiangfu");
+//        map.put("age", "30");
+//        map.put("sex", "nan");
+//        Set<Map.Entry<String, String>> set = map.entrySet();
+//        for (Map.Entry<String, String> entry : set) {
+//            if (entry.getKey().equals("age")) {
+//                map.remove(entry.getKey());
+//            }
+//        }
+//        System.out.println(map);
 
 
 

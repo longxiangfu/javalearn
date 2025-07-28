@@ -23,11 +23,12 @@ public class ListTest {
 
 
         // LinkedList
-        List list = new LinkedList();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        System.out.println(Convert.toStr(list)); // [1, 2, 3]
+//        List list = new LinkedList();
+//        list.add(1);
+//        list.add(2);
+//        list.add(3);
+//        System.out.println(list.indexOf(2));
+//        System.out.println(Convert.toStr(list)); // [1, 2, 3]
 
 
         // ArrayDeque  队列-先进先出
@@ -40,11 +41,11 @@ public class ListTest {
 
 
         // ArrayDeque  栈 先进后出
-//        ArrayDeque<Integer> integers = new ArrayDeque<>();
-//        integers.push(1);
-//        integers.push(2);
-//        integers.push(3);
-//        System.out.println(Convert.toStr(integers)); // [3, 2, 1]
-//        System.out.println(integers.pop()); // 3
+        ArrayDeque<Integer> integers = new ArrayDeque<>();
+        integers.push(1);
+        integers.push(2);
+        integers.push(3);
+        System.out.println(Convert.toStr(integers)); // [3, 2, 1]
+        System.out.println(integers.pop()); // 3
     }
 }

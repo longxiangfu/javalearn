@@ -9,7 +9,7 @@ public class PrimeTongJi {
 
     /**
      * 暴力算法
-     * @param n 统计n以内的素数个数
+     * @param n 统计n以内的素数个数（不包括n）
      * @return 素数个数
      */
     public static int bl(int n){

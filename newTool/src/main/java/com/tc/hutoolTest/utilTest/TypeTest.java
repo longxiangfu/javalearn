@@ -27,9 +27,9 @@ public class TypeTest {
          *         return new ArrayList<>();
          *     }
          */
-//        Method getList = ReflectUtil.getMethod(TestClass.class, "getList");
-//        Type returnType = TypeUtil.getReturnType(getList);
-//        System.out.println(TypeUtil.getTypeArgument(returnType));
+        Method getList = ReflectUtil.getMethod(TestClass.class, "getList");
+        Type returnType = TypeUtil.getReturnType(getList);
+        System.out.println(TypeUtil.getTypeArgument(returnType));
 
     }
 }

@@ -15,9 +15,9 @@ public class StrBuilderTest {
 
         StrBuilder strBuilder = new StrBuilder();
         strBuilder.append("a").append("b");
-        Console.log(strBuilder);
+        Console.log(strBuilder); // ab
         strBuilder.reset(); // 生成新的字符串不需要开辟新的内存空间
         strBuilder.append("c").append("d");
-        Console.log(strBuilder);
+        Console.log(strBuilder); // cd
     }
 }

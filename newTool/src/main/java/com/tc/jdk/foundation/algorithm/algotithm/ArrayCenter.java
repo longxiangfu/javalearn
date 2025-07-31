@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 /**
  * 寻找数组中心下标
- * 假如 1 7之和 = 7 3 6 5 6，那么中心为7，中心下标为1
  */
 public class ArrayCenter {
     public static void main(String[] args) {
@@ -17,15 +16,13 @@ public class ArrayCenter {
      * @return
      */
     private static int pivotIndex(int[] nums) {
-        int sum = Arrays.stream(nums).sum();
-        int total = 0;
+        int sum = Arrays.stream(nums).sum(); // 总和
+        int total = 0; // 左边所有元素和
         for (int i = 0; i <nums.length; i++) {
-            total += nums[i];
-            if (total == sum) {
+            if (total == sum - total - nums[i]) { // 左边所有元素和等于右边所有元素和
                 return i;
             }
-
-            sum -= nums[i];
+            total += nums[i];
         }
 
         return -1;

@@ -8,7 +8,7 @@ import java.util.concurrent.Executors;
 
 /**
  * 演示1:CountDownLatch
- * 单个线程等待
+ * 单个线程等待: 一个线程等多个线程
  * CountDownLatch  共享锁
  * @author longxiangfu
  *

@@ -33,6 +33,7 @@ public class ConvertTest {
          */
 //        long a = 4535345;
 //        long minutes = Convert.convertTime(a, TimeUnit.MILLISECONDS, TimeUnit.MINUTES);
+//        System.out.println(minutes); // 75
 
 
         /**

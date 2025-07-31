@@ -3,6 +3,9 @@ package com.tc.hutoolTest.http;
 import cn.hutool.core.lang.Console;
 import cn.hutool.http.HtmlUtil;
 
+/**
+ * HtmlUtil 操作html
+ */
 public class HtmlUtilTest {
     public static void main(String[] args) {
         /**
@@ -57,7 +60,6 @@ public class HtmlUtilTest {
          */
         String html = "per<alert></alert>";
         Console.log(HtmlUtil.filter(html)); // per
-
     }
 
 }

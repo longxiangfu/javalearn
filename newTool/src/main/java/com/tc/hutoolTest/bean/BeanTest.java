@@ -26,7 +26,7 @@ public class BeanTest {
 //        map.put("Name", "Joe");
 //        map.put("aGe", 12);
 //        map.put("openId", "DFDFSDFWERWER");
-//        Person person = BeanUtil.fillBeanWithMapIgnoreCase(map, new Person(), false);
+//        Person person = BeanUtil.fillBeanWithMapIgnoreCase(map, new Person(), true);
 //        System.out.println(person.toString()); // Person{name='Joe', age=12}
 
 
@@ -51,40 +51,41 @@ public class BeanTest {
 //        SubPerson subPerson = BeanUtil.copyProperties(p1, SubPerson.class);
 //        System.out.println(subPerson.toString()); // SubPerson{id=null, subName='sub测试', isSlow=null} Person{name='测试', age=0}
 
+
         /**
-         * BeanUtil.getProperty--javaBean生层次嵌套时寻找
+         * BeanUtil.getProperty--javaBean深层次嵌套时寻找
          */
-        ExamInfoDict examInfoDict = new ExamInfoDict();
-        examInfoDict.setId(1);
-        examInfoDict.setExamType(0);
-        examInfoDict.setAnswerIs(1);
-        ExamInfoDict examInfoDict1 = new ExamInfoDict();
-        examInfoDict1.setId(2);
-        examInfoDict1.setExamType(0);
-        examInfoDict1.setAnswerIs(0);
-        ExamInfoDict examInfoDict2 = new ExamInfoDict();
-        examInfoDict2.setId(3);
-        examInfoDict2.setExamType(1);
-        examInfoDict2.setAnswerIs(0);
-        List<ExamInfoDict> examInfoDicts = new ArrayList<>();
-        examInfoDicts.add(examInfoDict);
-        examInfoDicts.add(examInfoDict1);
-        examInfoDicts.add(examInfoDict2);
-
-        UserInfoDict userInfoDict = new UserInfoDict();
-        userInfoDict.setId(1);
-        userInfoDict.setPhotoPath("yx.mm.com");
-        userInfoDict.setRealName("张三");
-        userInfoDict.setExamInfoDict(examInfoDicts);
-
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("userInfo", userInfoDict);
-        map.put("flag", 1);
-
-        Object property = BeanUtil.getProperty(map, "userInfo.examInfoDict[1].id"); // 2
-        System.out.println(property);
-        Object property1 = BeanUtil.getProperty(userInfoDict, "examInfoDict[2].id");
-        System.out.println(property1); // 3
+//        ExamInfoDict examInfoDict = new ExamInfoDict();
+//        examInfoDict.setId(1);
+//        examInfoDict.setExamType(0);
+//        examInfoDict.setAnswerIs(1);
+//        ExamInfoDict examInfoDict1 = new ExamInfoDict();
+//        examInfoDict1.setId(2);
+//        examInfoDict1.setExamType(0);
+//        examInfoDict1.setAnswerIs(0);
+//        ExamInfoDict examInfoDict2 = new ExamInfoDict();
+//        examInfoDict2.setId(3);
+//        examInfoDict2.setExamType(1);
+//        examInfoDict2.setAnswerIs(0);
+//        List<ExamInfoDict> examInfoDicts = new ArrayList<>();
+//        examInfoDicts.add(examInfoDict);
+//        examInfoDicts.add(examInfoDict1);
+//        examInfoDicts.add(examInfoDict2);
+//
+//        UserInfoDict userInfoDict = new UserInfoDict();
+//        userInfoDict.setId(1);
+//        userInfoDict.setPhotoPath("yx.mm.com");
+//        userInfoDict.setRealName("张三");
+//        userInfoDict.setExamInfoDict(examInfoDicts);
+//
+//        HashMap<String, Object> map = new HashMap<>();
+//        map.put("userInfo", userInfoDict);
+//        map.put("flag", 1);
+//
+//        Object property = BeanUtil.getProperty(map, "userInfo.examInfoDict[1].id");
+//        System.out.println(property); // 2
+//        Object property1 = BeanUtil.getProperty(userInfoDict, "examInfoDict[2].id");
+//        System.out.println(property1); // 3
 
     }
 

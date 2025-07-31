@@ -15,6 +15,7 @@ public class HttpResponseTest {
         Console.log("响应头：{}", response.header(Header.USER_AGENT)); // 响应头：null
         // 自定义的头信息
         Console.log("响应头：{}", response.header("Content-Disposition")); // 响应头：null
+        System.out.println("内容：" + response.body());
 
     }
 }

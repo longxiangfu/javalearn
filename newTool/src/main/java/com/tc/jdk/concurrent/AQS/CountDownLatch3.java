@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
  * 1、countDown():计数器减1
  * 2、await():调用该方法，如果计数器不为0，则阻塞调用线程；如果等于0，则调用线程继续执行
  * 3、例子：患者排队-》医生上班-》体检-》医生下班
+ * 一个线程等多个线程，多个线程等一个线程
  */
 public class CountDownLatch3 {
     //分别定义医生和病人的计数器

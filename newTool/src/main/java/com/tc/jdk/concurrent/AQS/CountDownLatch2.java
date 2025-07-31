@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 演示2:CountDownLatch
- * 单个线程等待
+ * 单个线程等待： 一个线程等一个线程
  * @author longxiangfu
  *
  */

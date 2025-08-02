@@ -12,6 +12,7 @@ import java.util.concurrent.atomic.LongAdder;
 public class LongAdderExample {
     // 创建一个 LongAdder 实例
     private static final LongAdder counter = new LongAdder();
+    LongAdder adder = new LongAdder();
 
     public static void main(String[] args) {
         // 创建一个固定大小的线程池

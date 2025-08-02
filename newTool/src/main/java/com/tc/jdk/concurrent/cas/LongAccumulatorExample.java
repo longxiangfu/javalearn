@@ -18,8 +18,9 @@ public class LongAccumulatorExample {
     static {
         // 定义一个二元操作符，用于计算乘积
         LongBinaryOperator operator = (x, y) -> x + y;
-        // 初始化 LongAccumulator，初始值为 1
+        // 初始化 LongAccumulator，初始值为 0
         accumulator = new LongAccumulator(operator, 0);
+
     }
 
     public static void main(String[] args) {

@@ -4,7 +4,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
- * CAS：可以保证线程安全，通过lock前缀指令和原子指令
+ * CAS：可以保证线程安全，通过lock:addl前缀指令和原子指令
  * AtomicBoolean
  * 这个例子展示了如何使用 AtomicBoolean 来确保对布尔值的修改是原子的，避免了多线程环境下的竞态条件。
  * @author longxiangfu

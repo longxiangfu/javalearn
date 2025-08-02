@@ -7,7 +7,7 @@ import lombok.Data;
  */
 @Data
 public class Counter {
-    // 必须是volatile int类型，不能是Integer
+    // 必须是volatile int类型，不能是Integer,否则报错
     volatile int count;
     // 必须是volatile long类型，不能是Long
     volatile long count2;

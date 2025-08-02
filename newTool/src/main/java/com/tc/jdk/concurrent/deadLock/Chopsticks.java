@@ -2,6 +2,9 @@ package com.tc.jdk.concurrent.deadLock;
 
 import lombok.Data;
 
+/**
+ * 筷子
+ */
 @Data
 public class Chopsticks {
     // 编号

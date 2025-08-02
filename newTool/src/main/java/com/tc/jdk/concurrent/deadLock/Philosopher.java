@@ -2,6 +2,9 @@ package com.tc.jdk.concurrent.deadLock;
 
 import lombok.Data;
 
+/**
+ * 哲学家
+ */
 @Data
 public class Philosopher extends Thread {
     // 左手边筷子

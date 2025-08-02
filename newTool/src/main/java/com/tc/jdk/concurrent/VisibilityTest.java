@@ -96,5 +96,6 @@ public class VisibilityTest {
         do {
             end = System.nanoTime();
         }while (start + interval >= end);
+
     }
 }

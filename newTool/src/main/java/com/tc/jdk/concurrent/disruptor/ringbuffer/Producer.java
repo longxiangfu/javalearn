@@ -10,11 +10,14 @@ public class Producer {
     }
     
     public void produceData(String data){
+        // 返回下一个序列
         long sequence = ringBuffer.next();
         try {
+            // 返回序列上的事件
             Order order = ringBuffer.get(sequence);
             order.setId(data);
         } finally {
+            // 发布序列，后序列上的事件就可以被读取了
             ringBuffer.publish(sequence);
         }
     }

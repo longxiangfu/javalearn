@@ -11,9 +11,10 @@ import java.util.concurrent.locks.ReentrantLock;
  * 线程安全：多个线程操作共享资源
  */
 public class MyThreadReentrantLock7 {
-    // 不用volatile修饰，因为线程切换回时，会从主内存中获取sum的值
+    // 不用volatile修饰，因为线程切换回时，会从主内存中获取sum的值，但是建议最好加上volatile
     private static int sum3 = 0;
     private static final ReentrantLock lock = new ReentrantLock();
+    // 不用volatile修饰，因为线程切换回时，会从主内存中获取sum的值，但是建议最好加上volatile
     private int sum2;
 
     public static void main(String[] args) throws InterruptedException {

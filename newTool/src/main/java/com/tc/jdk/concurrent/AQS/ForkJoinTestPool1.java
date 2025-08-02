@@ -6,7 +6,9 @@ import java.util.concurrent.Future;
 import java.util.concurrent.RecursiveTask;
 
 /**
- * ForkJoinPoll演示
+ * ForkJoinPool演示
+ * ForkjoinPool  ForkJoinTask
+ * RecursiveTask  fork()    join()
  */
 public class ForkJoinTestPool1 {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
@@ -41,9 +43,9 @@ public class ForkJoinTestPool1 {
                 Long middle = (start + end) / 2;
                 Sum leftSum = new Sum(start, middle);
                 Sum rightSum = new Sum(middle + 1, end);
-                leftSum.fork();
+                leftSum.fork(); // fork(): 将当前任务提交到ForkJoinPool的任务队列中等待执行
                 rightSum.fork();
-                sum = (Long) leftSum.join() + (Long) rightSum.join();
+                sum = (Long) leftSum.join() + (Long) rightSum.join(); // join()  完成后返回计算结果
             }
             return sum;
         }

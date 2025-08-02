@@ -2,6 +2,7 @@ package com.tc.jdk.concurrent.AQS;
 
 /**
  * 自定义锁测试
+ * votatile+锁：保证线程安全
  */
 public class TulingLockTest {
     // volatile只能保证可见性有序性，不能保证线程安全。

@@ -14,19 +14,19 @@ public class ReentrantReadWriteLockDemo1 {
 	public static void main(String[] args) {
 //		readTest();
 //		Thread-1 be ready to read data!
-//				Thread-0 be ready to read data!
-//				Thread-2 be ready to read data!
-//				Thread-1 have read data:1000
+//		Thread-0 be ready to read data!
+//		Thread-2 be ready to read data!
+//		Thread-1 have read data:1000
 //		Thread-0 have read data:1000
 //		Thread-2 have read data:1000
 
-//		writeTest();
+		writeTest();
 //		Thread-0 be ready to write data!
-//				Thread-0 have wrote data:3070
+//		Thread-0 have wrote data:3070
 //		Thread-1 be ready to write data!
-//				Thread-1 have wrote data:4278
+//		Thread-1 have wrote data:4278
 //		Thread-2 be ready to write data!
-//				Thread-2 have wrote data:2661
+//		Thread-2 have wrote data:2661
 	}
 
 	public static void readTest(){
@@ -53,13 +53,13 @@ public class ReentrantReadWriteLockDemo1 {
 
 
 	static class Queue{
-		private static Object data = 1000;//共享数据
+		private static volatile Object data = 1000;//共享数据
 		private static final ReentrantReadWriteLock rw = new ReentrantReadWriteLock();
 
 		public void get() {
 			ReentrantReadWriteLock.ReadLock readLock = rw.readLock();
+			readLock.lock();//上读锁，允许多个线程读取
 			try {
-				readLock.lock();//上读锁，允许多个线程读取
 				System.out.println(Thread.currentThread().getName()+" be ready to read data!");
 				Thread.sleep(2000);
 				System.out.println(Thread.currentThread().getName()+" have read data:"+data);
@@ -73,8 +73,8 @@ public class ReentrantReadWriteLockDemo1 {
 
 		public void put(Object data) {
 			ReentrantReadWriteLock.WriteLock writeLock = rw.writeLock();
+			writeLock.lock();//上写锁，只允许一个线程写
 			try {
-				writeLock.lock();//上写锁，只允许一个线程写
 				System.out.println(Thread.currentThread().getName()+" be ready to write data!");
 				Thread.sleep(2000);
 				this.data = data;

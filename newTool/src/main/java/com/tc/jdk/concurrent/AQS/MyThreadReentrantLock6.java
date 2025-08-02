@@ -9,9 +9,9 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class MyThreadReentrantLock6 {
     // 公平锁，线程按启动顺序排队依次获取锁
-//    private static final ReentrantLock lock = new ReentrantLock(true);
+    private static final ReentrantLock lock = new ReentrantLock(true);
     // 非公平锁，后启动的线程可能先获取锁
-    private static final ReentrantLock lock = new ReentrantLock();
+//    private static final ReentrantLock lock = new ReentrantLock();
 
     public static void main(String[] args) throws InterruptedException {
         for (int i = 0; i < 500; i++) {

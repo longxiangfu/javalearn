@@ -6,7 +6,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * 使用读写锁模拟一个缓存器
+ * 使用读写锁模拟一个线程安全的缓存器
  * 用在读多写少的场景，实现缓存器以保证线程安全
  * 读写锁：读的时候加读锁，这样其他线程也可以读；写的时候加写锁，其他线程不可以读写
  * 读写锁在同一时刻可以允许多个读线程访问，在写线程访问的时候其他的读线程和写线程都会被阻塞。读写锁维护一对锁(读锁和写锁)，通过锁的分离，使得并发性提高。

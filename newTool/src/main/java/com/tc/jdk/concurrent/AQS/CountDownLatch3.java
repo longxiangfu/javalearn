@@ -35,6 +35,7 @@ public class CountDownLatch3 {
                 }
             });
         }
+
         TimeUnit.MICROSECONDS.sleep(3000);
         //医生上班
         System.out.println("医生上班");

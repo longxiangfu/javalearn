@@ -1,5 +1,6 @@
 package com.tc.jdk.concurrent.AQS;
 
+import javax.swing.plaf.TableHeaderUI;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -8,12 +9,12 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class MyReentrantLock1 {
     private static final ReentrantLock lock = new ReentrantLock(true); // 锁
-    private static final Condition cigCon = lock.newCondition(); // 有烟条件
-    private static final Condition takeCon = lock.newCondition(); // 有饭条件
+    private static final Condition cigCon = lock.newCondition(); // 干活人的条件队列
+    private static final Condition takeCon = lock.newCondition(); // 吃饭人的条件队列
 
     // 不用加volatile，因为线程在切换回后，会从主内存中重新加载该变量
-    private static boolean hascig = false; // 有烟
-    private static boolean hastakeout = false; // 有饭
+    private static volatile boolean hascig = false; // 有烟
+    private static volatile boolean hastakeout = false; // 有饭
 
     public void cigratee() {
         // 获取到锁

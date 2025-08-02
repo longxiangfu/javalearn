@@ -8,7 +8,7 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * 两个线程交替输出
  * 1、锁：多线程环境
- * 2、条件：根据条件判断哪个线程输出（sychronized+wait+notify    ReentrantLock+Condition）
+ * 2、条件：根据条件判断哪个线程输出（sychronized+临界条件+wait\notify    ReentrantLock+临界条件+Condition）
  */
 public class Test {
     private static volatile ArrayBlockingQueue lockObj = new ArrayBlockingQueue<String>(1);

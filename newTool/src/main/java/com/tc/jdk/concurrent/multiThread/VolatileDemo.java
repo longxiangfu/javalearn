@@ -16,7 +16,8 @@ public class VolatileDemo {
 //        VolatileDemo.noVolatileTest();
 //        VolatileDemo.volatileTest();
 //        VolatileDemo.reentrantLockTest();
-        VolatileDemo.casTest();
+        VolatileDemo.reentrantLockTest2();
+//        VolatileDemo.casTest();
     }
 
     public static void noVolatileTest() throws InterruptedException {
@@ -57,6 +58,36 @@ public class VolatileDemo {
 
     public static void reentrantLockTest() throws InterruptedException {
         ReentrantLock lock = new ReentrantLock();
+
+        new Thread(()->{
+            while (flag) {
+
+            }
+            System.out.println("子线程结束");
+        }).start();
+
+        Thread.sleep(1000);
+
+        lock.lock();
+        try {
+            flag = false;
+        } catch (Exception e) {
+
+        }finally {
+            lock.unlock();
+        }
+
+        System.out.println("主线程结束");
+
+        // 程序不终止
+        // ReentrantLock在共享不加volatile时，不能保证可见性。ReentrantLock只能保证原子性
+    }
+
+
+    public static void reentrantLockTest2() throws InterruptedException {
+        ReentrantLock lock = new ReentrantLock();
+        lock.lock();
+
         new Thread(()->{
             while (flag) {
 
@@ -67,7 +98,6 @@ public class VolatileDemo {
         Thread.sleep(1000);
 
         try {
-            lock.lock();
             flag = false;
         } catch (Exception e) {
 

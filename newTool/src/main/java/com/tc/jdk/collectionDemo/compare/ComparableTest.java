@@ -16,5 +16,6 @@ public class ComparableTest {
         for (int i = 0; i < dogs.length; i++) {
             System.out.println(String.format("名字：%s，年龄：%d", dogs[i].getName(), dogs[i].getAge()));
         }
+
     }
 }

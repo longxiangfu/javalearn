@@ -16,9 +16,17 @@ import java.util.stream.Collectors;
 public class DeleteDupli {
     public static void main(String[] args) {
         Integer[] nums = {0, 1, 2, 2, 2, 3, 2, 4, 4, 6};
-        DeleteDupli.byFor(nums);
-//        DeleteDupli.bySet(nums);
+//        DeleteDupli.byFor(nums);
+        DeleteDupli.bySet(nums);
 //        DeleteDupli.doublePointer(nums);
+
+        // 十六进制转十进制
+        String hexNumber = "1A"; // 示例十六进制数
+        int decimalNumber = Integer.parseInt(hexNumber, 16);
+        System.out.println("十六进制 " + hexNumber + " 转换为十进制为: " + decimalNumber);
+
+        System.out.println(Integer.decode(""));
+
     }
 
     private static void byFor(Integer[] nums) {
@@ -63,5 +71,30 @@ public class DeleteDupli {
         }
         System.out.println("新数组长度：" + (i));
         return i;
+
     }
+
+
+    /**
+     * 获取一个正整数的所有质数因子
+     * @param number 给定的正整数
+     */
+    private static void getPrimeFactors(int number) {
+        if (number <= 1) {
+            System.out.println("请输入大于1的正整数");
+            return;
+        }
+
+        System.out.print(number + "的质数因子有：");
+        // 从最小的质数开始尝试分解
+        for (int i = 2; i <= number; i++) {
+            // 当能整除时，继续除以该因子直到不能整除为止
+            while (number % i == 0) {
+                System.out.print(i + " ");
+                number /= i;
+            }
+        }
+        System.out.println();
+    }
+
 }

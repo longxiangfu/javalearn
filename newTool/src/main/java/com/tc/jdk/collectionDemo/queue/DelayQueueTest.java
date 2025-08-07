@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * DelayQueue:延迟队列,内部是基于PriorityQueue的
- * 创建元素时指定延时时间，只有到达延时时间，才能获取到该元素
+ * 创建元素时指定延时时间，只有到达延时时间，消费者才能获取到该元素
  * 手动实现延迟消息队列
  */
 public class DelayQueueTest {
@@ -54,7 +54,7 @@ public class DelayQueueTest {
                 //消息
                 String message = String.format("%s，消息编号：%s，发送时间：%s，延迟时间：%s秒",
                         producer, MESSAGE_NO.getAndIncrement(), formatter.format(LocalDateTime.now()), delayTime/1000);
-                delayQueue.put(new Element(message, delayTime));
+                delayQueue.put(new Element(message, delayTime)); // 添加元素时指定延时时间
             }
 
         }).start();

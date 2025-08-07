@@ -54,8 +54,10 @@ public class HashMapDemo {
      * @return
      */
     public static int myHashCode(Object object) {
-        int hash = System.identityHashCode(object);
-        System.out.println("hash:" + hash); // hash:715521683
+        int hash = System.identityHashCode(object); // 基于对象的内存地址，重启后会改变
+        int hash2 = object.hashCode(); // 基于对象属性计算,重启后不会变
+        System.out.println("hash:" + hash);
+        System.out.println("hash2:" + hash2);
         return hash;
     }
 
@@ -64,7 +66,7 @@ public class HashMapDemo {
      * 验证扩容机制
      */
     public static void verifyExpansion() throws NoSuchFieldException, IllegalAccessException {
-        // 创建初始容量为4，负载因子为0.75的HashMap,那么负载容量为4*0.75=3
+        // 创建初始容量为4(默认16)，负载因子为0.75的HashMap,那么负载容量为4*0.75=3
         HashMap<Integer, String> map = new HashMap<>(4, 0.75f);
 
         // 插入5个元素，触发扩容

@@ -8,7 +8,7 @@ import java.util.Set;
 public class LinkedHashMapDemo {
     public static void main(String[] args) {
         viewInsertSort();
-        viewSelectSort();
+//        viewSelectSort();
     }
 
 

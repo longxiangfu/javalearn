@@ -1,6 +1,11 @@
 package com.tc.jdk.collectionDemo;
 
+import cn.hutool.core.convert.Convert;
+import org.apache.commons.lang3.ArrayUtils;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class ArrayTest {
     public static void main(String[] args) {
@@ -8,18 +13,20 @@ public class ArrayTest {
         int[] arr = new int[5];//默认元素都是0
         int[] arr2 = new int[]{1, 2, 3, 4};
         int[] arr3 = {1, 2, 3};
-        Arrays.stream(arr).forEach(value -> System.out.println(value));
-        System.out.println(Arrays.toString(arr));//[1, 10, 10, 4, 5]
-        // 数组的容量
-        System.out.println(arr.length); // 5
+//        Arrays.stream(arr).forEach(value -> System.out.println(value));
+//        System.out.println(Arrays.toString(arr));//[0, 0, 0, 0, 0]
+//        // 数组的容量
+//        System.out.println(arr.length); // 5
 
-        //数组复制
+        //数组复制   深复制
 //        int[] arr2Copy = Arrays.copyOf(arr2, arr2.length);
 //        System.out.println(Arrays.toString(arr2Copy));
+//        arr2Copy[0] = 10;
+//        System.out.println(Convert.toStr(arr2));
 
         //数组填充
 //        int[] arrFill = new int[5];
-//        Arrays.fill(arrFill, 10);
+//        Arrays.fill(arrFill, 6);
 //        System.out.println(Arrays.toString(arrFill));//[6, 6, 6, 6, 6, 6]
 
         //数组合并
@@ -75,7 +82,7 @@ public class ArrayTest {
 //        String[] strArray = new String[3];
 //        System.out.println(Arrays.toString(strArray));//[null, null, null]
 
-        //
+
 //        String[] strArr = {"dog", "cat", "pig", "bird"};
 //        String[] strArr2 = {"dog", "cat", "pig", "bird"};
 //        System.out.println(strArr == strArr2);//false
@@ -84,9 +91,9 @@ public class ArrayTest {
 
         //使用二分法查找之前需要排序
 //        String[] arrArray = {"dog", "cat", "pig", "bird"};
-////        Arrays.sort(arrArray);
+//        Arrays.sort(arrArray);
 //        int result = Arrays.binarySearch(arrArray, "bird");
-//        System.out.println(result == -1);//true
+//        System.out.println(result == -1);// false
 
         //数组中是否包含某值
 //        String[] array = new String[]{"a", "b", "c"};
@@ -95,9 +102,9 @@ public class ArrayTest {
 //        System.out.println(Arrays.asList(array).contains("d"));
 
         //修改数组中指定区间中元素值(将第二个到第三个数修改为10)
-//        int[] array = new int[]{1, 2, 3, 4, 5};
-//        Arrays.fill(array, 1, 3, 10);
-//        System.out.println(Arrays.toString(array));
+        int[] array = new int[]{1, 2, 3, 4, 5};
+        Arrays.fill(array, 1, 3, 10);
+        System.out.println(Arrays.toString(array));
 
     }
 }

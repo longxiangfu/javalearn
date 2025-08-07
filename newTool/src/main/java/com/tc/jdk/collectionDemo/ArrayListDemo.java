@@ -1,7 +1,9 @@
 package com.tc.jdk.collectionDemo;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.apache.commons.collections4.CollectionUtils;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ArrayListDemo {
     public static void main(String[] args) {
@@ -60,6 +62,8 @@ public class ArrayListDemo {
 //        //判断是否可以添加null
 //        List<Integer> list2 = new ArrayList<>();
 //        list2.add(null); // 集合可以添加null
+//        list2.add(null); // 集合可以添加null
+//        System.out.println(list2);
 
         //Collection是集合顶级接口（最顶级是Iterator）,定义了集合的一些基本操作，如size(),isEmpty(),contains()等
         //Collections是集合工具类，进行集合排序、线程安全操作等
@@ -75,7 +79,7 @@ public class ArrayListDemo {
 //        if(CollectionUtils.isEmpty(list)){
 //
 //        }
-//        System.out.println(Arrays.toString(list.toArray()));
+//        System.out.println(list);
 
 
         //ArrayList和LinkedList从中间插入，比较时间
@@ -124,7 +128,6 @@ public class ArrayListDemo {
         list.add("b");
         list.add("c");
         System.out.println(list.size());
-
 
     }
 }

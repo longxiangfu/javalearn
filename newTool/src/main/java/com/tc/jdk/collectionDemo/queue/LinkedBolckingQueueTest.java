@@ -4,8 +4,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * LinkedBolckingQueue
- * 1、并发包下，访问线程安全（ReenterLock）
- * 2、可以不用指定容量，默认容量是Integer.MAX_VALUE。无界队列
+ * 1、可以不用指定容量，默认容量是Integer.MAX_VALUE。无界队列
+ * 2、并发包下，访问线程安全（ReenterLock）
  */
 public class LinkedBolckingQueueTest {
     public static void main(String[] args) {

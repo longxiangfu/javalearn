@@ -5,8 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Sublist演示：ArrayList.subList()返回SubList,是一个List,是ArrayList的内部类，是ArrayList的视图，父List和子List都指向
- * 同一个内存地址
+ * Sublist演示：ArrayList.subList()返回SubList,是一个List,是ArrayList的内部类，是ArrayList的视图，父List和子List都指向同一个内存地址
  * 不能将SubList强转成ArrayList
  */
 public class subListTest {
@@ -33,40 +32,29 @@ public class subListTest {
 //        System.out.println("subList.set(1, \"666\")得到List：" + subList);
 
         /*
-        2.非结构性改变父List:父List和子List都会改变
-         */
-        /*
-        3.非结构性改变子List:父List和子List都会改变
-         */
-
-        /*
         4.非结构性改变父List:会抛出异常CME(CurrentModificationException:并发修改)
         CME:由于fail-fast机制(快速失败：预先检查)导致的
         */
-//        List<String> sourceList = new ArrayList<String>() {{
-//            add("H");
-//            add("O");
-//            add("L");
-//            add("L");
-//            add("I");
-//            add("S");
-//        }};
-//
-//        List subList = sourceList.subList(2, 5);
-//
-//        System.out.println("sourceList ： " + sourceList);
-//        System.out.println("sourceList.subList(2, 5) 得到List ：");
-//        System.out.println("subList ： " + subList);
-//
-//        sourceList.add("666");
-//
-//        System.out.println("sourceList.add(666) 得到List ：");
-//        System.out.println("sourceList ： " + sourceList);
-//        System.out.println("subList ： " + subList);
+        List<String> sourceList = new ArrayList<String>() {{
+            add("H");
+            add("O");
+            add("L");
+            add("L");
+            add("I");
+            add("S");
+        }};
 
+        List subList = sourceList.subList(2, 5);
 
+        System.out.println("sourceList ： " + sourceList);
+        System.out.println("sourceList.subList(2, 5) 得到List ：");
+        System.out.println("subList ： " + subList);
 
+        sourceList.add("666");
 
+        System.out.println("sourceList.add(666) 得到List ：");
+        System.out.println("sourceList ： " + sourceList);
+        System.out.println("subList ： " + subList);
 
 
         List<String> list = Arrays.asList("1", "2");

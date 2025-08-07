@@ -14,8 +14,7 @@ public class ArraysTest {
         String[] strArray = new String[]{"a", "b", "c"};
 
         List<String> list = Arrays.asList(strArray);//返回Arrays的内部类
-        System.out.println(Arrays.toString(list.toArray()));//[a, b, c]
-//        List<String> list1 = Arrays.asList("d", "e", "f");
+        System.out.println(list);//[a, b, c]
 
         /*
         Arrays内部的集合类，只能获取和修改，不能添加和删除，因为内部类没有添加和删除方法
@@ -35,7 +34,7 @@ public class ArraysTest {
 //        for (int i = 0; i < length; i++) {
 //            strArray[i] = strArray[i] + "123";
 //        }
-//        System.out.println(Arrays.toString(list.toArray()));//[a123, b123, c123]
+//        System.out.println(list);//[a123, b123, c123]
 
 
         /*
@@ -43,12 +42,12 @@ public class ArraysTest {
          */
         List<String> newList = new ArrayList<>();
         Collections.addAll(newList, strArray);
-        System.out.println(Arrays.toString(newList.toArray()));
+        System.out.println(newList);
         int length = strArray.length;
         for (int i = 0; i < length; i++) {
             strArray[i] = strArray[i] + "123";
         }
-        System.out.println(Arrays.toString(newList.toArray()));
+        System.out.println(newList);
 
 
     }

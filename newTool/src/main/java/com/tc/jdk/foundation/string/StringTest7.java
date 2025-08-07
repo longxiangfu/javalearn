@@ -22,6 +22,13 @@ public class StringTest7 {
 
 
 
+        char b = "A".charAt(0);
+        System.out.println(b); // A
+
+        int c = "A".charAt(0);
+        System.out.println(c); // 65
+
+
 
 
     }

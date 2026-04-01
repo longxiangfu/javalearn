@@ -13,7 +13,9 @@ public class Test {
                 new User("Eve", 28, "New York")
         );
         
-        // 1. 转换为集合类    这些方法用于将 Stream 收集为 List、Set 或特定的 Collection
+        /*
+         1. 转换为集合类    这些方法用于将 Stream 收集为 List、Set 或特定的 Collection
+         */
         // toList()   将流元素收集到一个 List 中
         List<String> names = users.stream()
                 .map(User::getName)
@@ -32,7 +34,9 @@ public class Test {
                 .collect(Collectors.toCollection(LinkedList::new));
         // 结果: LinkedList 包含所有名字
 
-        // 2. 转换为 Map   这些方法用于将流元素转换为 Map
+        /*
+         2. 转换为 Map   这些方法用于将流元素转换为 Map
+         */
         // toMap(Function, Function)   将流转换为 Map，指定 Key 和 Value。如果 Key 重复会抛出异常
         Map<String, Integer> nameToAge = users.stream()
                 .collect(Collectors.toMap(User::getName, User::getAge));
@@ -47,7 +51,9 @@ public class Test {
                         (existing, replacement) -> existing.length() > replacement.length() ? existing : replacement
                 ));
 
-        // 3. 字符串拼接
+        /*
+         3. 字符串拼接
+         */
         // joining() 将所有元素拼接成一个字符串
         users.stream()
                 .map(User::getName)
@@ -66,7 +72,9 @@ public class Test {
                 .collect(Collectors.joining(" | ", "[ ", " ]"));
         // 结果: "[ Alice | Bob | Charlie | David | Eve ]"
 
-        // 4. 统计与归约  这些方法用于计算数值流的总和、平均值、数量等
+        /*
+         4. 统计与归约  这些方法用于计算数值流的总和、平均值、数量等
+         */
         // counting()  计算流中元素的数量
         Integer totalAge = users.stream()
                 .collect(Collectors.summingInt(User::getAge));
@@ -94,7 +102,9 @@ public class Test {
         users.stream()
                 .collect(Collectors.reducing(0, user -> user.getName().length(), Integer::sum));
 
-        // 5. 分组  这是 Collectors 中最强大的功能之一
+        /*
+         5. 分组  这是 Collectors 中最强大的功能之一
+         */
         // groupingBy(Function)  根据函数返回的值进行分组，Value 默认为 List
         Map<String, List<User>> byCity = users.stream()
                 .collect(Collectors.groupingBy(User::getCity));
@@ -118,7 +128,9 @@ public class Test {
                 ));
         // 结果: 是一个 TreeMap，Key 是排序的
 
-        // 6. 分区  分区是分组的一种特殊情况，Key 只能是 Boolean
+        /*
+         6. 分区  分区是分组的一种特殊情况，Key 只能是 Boolean
+         */
         // partitioningBy(Predicate)  根据条件将流分为 true 和 false 两组
         Map<Boolean, List<User>> partitioned
                 = users.stream()
@@ -132,7 +144,9 @@ public class Test {
         System.out.println("partitionCount:" + partitionCount);
         // 结果：partitionCount:{false=2, true=3}
         
-        // 7. 组合与其他高级操作
+        /*
+         7. 组合与其他高级操作
+         */
         // mapping(Function, Collector)  在累积之前对元素应用转换函数。常用于 groupingBy 或 toMap 的下游
         // 按城市分组，但只保留每组中用户的名字，而不是整个 User 对象
         Map<String, List<String>> collect = users.stream()
